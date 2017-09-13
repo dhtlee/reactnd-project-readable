@@ -1,5 +1,49 @@
-body {
+html, body, #root {
+  max-width: 100vw;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+.wrapper {
+  padding: 20px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas:
+    "header"
+    "content"
+    "sidebar"
+    "footer"
+}
+
+@media (min-width: 700px) {
+  .wrapper {
+    grid-template-columns: 9fr minmax(250px, 3fr);
+    grid-template-areas:
+      "header header "
+      "content sidebar"
+      "footer sidebar"
+  }
+}
+
+.header {
+  grid-area: header;
+  background-color: yellow;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: lightcoral;
+}
+
+.content {
+  grid-area: content;
+  background-color: orange;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: cyan;
 }
