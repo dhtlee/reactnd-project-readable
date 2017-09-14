@@ -7,7 +7,7 @@ html, body, #root {
 }
 
 .wrapper {
-  padding: 20px;
+  padding: 20px 40px 0px 40px;
   margin: 0 auto;
   display: grid;
   grid-gap: 20px;
@@ -30,7 +30,7 @@ html, body, #root {
 
 .header {
   grid-area: header;
-  background-color: yellow;
+  text-align: center;
 }
 
 .sidebar {
