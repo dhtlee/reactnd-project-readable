@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 import Api from 'api';
 import { getAllCategoriesSuccess } from 'actions';
+import Dashboard from './dashboard';
 import Header from './header';
-import Content from './content';
-import Sidebar from './sidebar';
-import Footer from './footer';
 
 class App extends Component {
   componentDidMount() {
@@ -16,11 +15,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className='wrapper'>
-        <Header/>
-        <Content/>
-        <Sidebar/>
-        <Footer/>
+      <div>
+        <Route exact path='/' component={Dashboard}/>
       </div>
     );
   }

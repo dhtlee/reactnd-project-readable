@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Sidebar = (props) => {
-  console.log(props.categories);
   return (
     <div className='sidebar'>
       <div className='sidebar--section'>
