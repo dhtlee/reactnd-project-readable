@@ -15,21 +15,12 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className='wrapper'>
         <Header/>
         <Content/>
         <Sidebar/>
         <Footer/>
-        {/* Udacity project #2 - Readable
-        <ul>
-          {this.props.categories.map((category) => (
-            <li key={category.name}>
-              {category.name}
-            </li>
-          ))}
-        </ul> */}
       </div>
     );
   }

@@ -34,8 +34,20 @@ html, body, #root {
 }
 
 .sidebar {
+  display: flex;
+  flex-flow: column;
   grid-area: sidebar;
-  background-color: lightcoral;
+  line-height: 1.25rem;
+}
+
+.sidebar--section h4 {
+  margin: 0px;
+}
+
+.sidebar--section--label {
+  border-bottom: 1px solid #DBDBDB;
+  letter-spacing: 1px;
+  color: #999999;
 }
 
 .content {
