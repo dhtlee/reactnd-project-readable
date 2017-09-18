@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 import 'normalize.css';
 
 import 'index.css';
@@ -12,17 +13,21 @@ import reducers from 'reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
+const history = createBrowserHistory();
+
 const store = createStore(
-  reducers,
+  connectRouter(history)(reducers),
   composeEnhancers(
-    applyMiddleware()
+    applyMiddleware(
+      routerMiddleware(history)
+    )
   )
 );
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <App/>
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();

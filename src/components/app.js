@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 import Api from 'api';
 import { getAllCategoriesSuccess } from 'actions';
 import Dashboard from './dashboard';
 import Header from './header';
+import Sidebar from './sidebar';
+import Footer from './footer';
+import Category from './category';
 
 class App extends Component {
   componentDidMount() {
@@ -15,8 +18,12 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='wrapper'>
+        <Header/>
         <Route exact path='/' component={Dashboard}/>
+        <Route path='/category/react' component={Category}/>
+        <Sidebar/>
+        <Footer/>
       </div>
     );
   }
@@ -30,7 +37,4 @@ const mapDispatchToProps = (dispatch) => ({
   loadCategories: (categories) => dispatch(getAllCategoriesSuccess(categories)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));

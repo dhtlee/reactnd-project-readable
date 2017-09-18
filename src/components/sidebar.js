@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const Sidebar = (props) => {
@@ -12,7 +13,7 @@ const Sidebar = (props) => {
           <ul>
             {props.categories.map((category) => (
               <li key={category.name}>
-                {category.name}
+                <Link to={`/category/${category.name}`}>{category.name}</Link>
               </li>
             ))}
           </ul>
