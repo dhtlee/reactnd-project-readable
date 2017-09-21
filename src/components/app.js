@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 
 import Api from 'api';
-import { getAllCategoriesSuccess } from 'actions';
+import { getAllCategoriesSuccess, getAllPostsSuccess } from 'actions';
 import Dashboard from './dashboard';
 import Header from './header';
 import Sidebar from './sidebar';
@@ -14,6 +14,8 @@ class App extends Component {
   componentDidMount() {
     Api.getCategories()
       .then(categories => this.props.loadCategories(categories));
+    Api.getPosts()
+      .then(posts => this.props.loadPosts(posts));
   }
 
   render() {
@@ -30,11 +32,13 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  categories: state.categories
+  categories: state.categories,
+  posts: state.posts
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadCategories: (categories) => dispatch(getAllCategoriesSuccess(categories)),
+  loadPosts: (posts) => dispatch(getAllPostsSuccess(posts))
 })
 
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));
