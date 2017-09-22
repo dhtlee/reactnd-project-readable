@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Category = () => (
+const Category = ({ match }) => (
   <div>
-    asdf
+    <h2>Category - {match.params.name}</h2>
   </div>
 )
 

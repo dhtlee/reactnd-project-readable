@@ -1,10 +1,8 @@
 import React from 'react';
 
-import Content from './content';
-
 const Dashboard = () => (
   <div>
-    <Content/>
+    <h2>Dashboard</h2>
   </div>
 );
 

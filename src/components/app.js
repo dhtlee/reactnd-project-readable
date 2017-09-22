@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Api from 'api';
 import { getAllCategoriesSuccess, getAllPostsSuccess } from 'actions';
-import Dashboard from './dashboard';
 import Header from './header';
+import Content from './content';
 import Sidebar from './sidebar';
 import Footer from './footer';
-import Category from './category';
 
 class App extends Component {
   componentDidMount() {
@@ -22,8 +21,7 @@ class App extends Component {
     return (
       <div className='wrapper'>
         <Header/>
-        <Route exact path='/' component={Dashboard}/>
-        <Route path='/category/react' component={Category}/>
+        <Content/>
         <Sidebar/>
         <Footer/>
       </div>
