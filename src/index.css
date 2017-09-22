@@ -52,7 +52,6 @@ html, body, #root {
 
 .content {
   grid-area: content;
-  background-color: orange;
 }
 
 .footer {
