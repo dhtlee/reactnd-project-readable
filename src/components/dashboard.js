@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const Dashboard = () => (
-  <div>
-    <h2>Dashboard</h2>
-  </div>
-);
+import PostList from './post-list';
 
-export default Dashboard;
+class Dashboard extends Component {
+  render() {
+    return (
+      <PostList posts={this.props.posts}/>
+    )
+  }
+}
+
+
+const mapStateToProps = ({ posts }) => ({
+  posts
+});
+  
+
+export default connect(mapStateToProps)(Dashboard);

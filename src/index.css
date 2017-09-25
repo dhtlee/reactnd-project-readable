@@ -58,3 +58,16 @@ html, body, #root {
   grid-area: footer;
   background-color: cyan;
 }
+
+.post-list {
+  display: flex;
+  flex-flow: column;
+}
+
+.post {
+}
+
+.post-author-date-time {
+  transform: translateY(-0.8rem);
+  font-size: 0.8rem;
+}
