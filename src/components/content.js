@@ -1,14 +1,36 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { withRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import Dashboard from './dashboard';
-import Category from './category';
+import PostList from './post-list';
 
-const Content = () => (
-  <div className='content'>
-    <Route exact path='/' component={Dashboard}/>
-    <Route path='/category/:name' component={Category}/>
-  </div>
-);
+class Content extends Component {
+  filterPostByCategory(category) {
+    return this.props.posts.filter(post => post.category === category); 
+  }
 
-export default Content;
+  render() {
+    this.filterPostByCategory();
+    return (
+      <div className='content'>
+      <Route exact 
+        path='/' 
+        render={() => (
+          <PostList posts={this.props.posts} />
+        )}/>
+      <Route 
+        path='/category/:name'
+        render={({ match }) => (
+          <PostList posts={this.filterPostByCategory(match.params.name)} />
+        )}
+      />
+    </div>
+    )  
+  }
+};
+
+const mapStateToProps = (state) => ({
+  posts: state.posts
+})
+
+export default withRouter(connect(mapStateToProps)(Content));
