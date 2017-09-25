@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Footer = () => (
-  <div className='footer'>
-    Footer
-  </div>
+  <p className='footer'>
+    Created by Daniel Lee for Udacity React Nanodegree - Readable Project
+  </p>
 );
 
 export default Footer;
