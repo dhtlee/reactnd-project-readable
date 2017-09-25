@@ -20,7 +20,8 @@ html, body, #root {
 
 @media (min-width: 700px) {
   .wrapper {
-    grid-template-columns: 9fr minmax(250px, 3fr);
+    padding: 20px 80px 0px 80px;
+    grid-template-columns: 9fr minmax(200px, 3fr);
     grid-template-areas:
       "header header "
       "content sidebar"
@@ -30,7 +31,6 @@ html, body, #root {
 
 .header {
   grid-area: header;
-  text-align: center;
 }
 
 .sidebar {
