@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 const Sidebar = (props) => {
   return (
     <div className='sidebar'>
-      <div className='sidebar--section'>
-        <div className='sidebar--section--label'>
+      <div className='sidebar-section'>
+        <div className='sidebar-section-header'>
           <h4>Categories</h4>
         </div>
-        <div className='sidebar--section--content'>
+        <div className='sidebar-section-content'>
           <ul>
             {props.categories.map((category) => (
               <li key={category.name}>
