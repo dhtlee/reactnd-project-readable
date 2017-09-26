@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import WhiteSpace from './white-space';
 
-const ContentControl = ({ location: { pathname } }) => {
+const Sorter = ({ location: { pathname } }) => {
   return (
     <div className='content-sort'>
       Sort by:
@@ -24,4 +24,4 @@ const ContentControl = ({ location: { pathname } }) => {
   )
 }
 
-export default withRouter(ContentControl);
+export default withRouter(Sorter);

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import ContentControl from './content-control';
 import PostList from './post-list';
 
 class Content extends Component {
@@ -13,7 +12,6 @@ class Content extends Component {
   render() {
     return (
       <div className='content'>
-        <ContentControl />
         <Route exact 
           path='/' 
           render={() => (
