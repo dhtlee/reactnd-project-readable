@@ -65,6 +65,12 @@ html, body, #root {
   grid-area: content;
 }
 
+.content-control {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 2rem;
+}
+
 .footer {
   grid-area: footer;
   border-top: 1px solid #DBDBDB;

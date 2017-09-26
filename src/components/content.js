@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import ContentControl from './content-control';
 import PostList from './post-list';
 
 class Content extends Component {
@@ -10,21 +11,22 @@ class Content extends Component {
   }
 
   render() {
-    this.filterPostByCategory();
     return (
       <div className='content'>
-      <Route exact 
-        path='/' 
-        render={() => (
-          <PostList posts={this.props.posts} />
-        )}/>
-      <Route 
-        path='/category/:name'
-        render={({ match }) => (
-          <PostList posts={this.filterPostByCategory(match.params.name)} />
-        )}
-      />
-    </div>
+        <ContentControl />
+        <Route exact 
+          path='/' 
+          render={() => (
+            <PostList posts={this.props.posts} />
+          )}
+        />
+        <Route 
+          path='/category/:name'
+          render={({ match }) => (
+            <PostList posts={this.filterPostByCategory(match.params.name)} />
+          )}
+        />
+      </div>
     )  
   }
 };
