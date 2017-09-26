@@ -5,7 +5,7 @@ import WhiteSpace from './white-space';
 
 const ContentControl = ({ location: { pathname } }) => {
   return (
-    <div className='content-control'>
+    <div className='content-sort'>
       Sort by:
       <WhiteSpace />
       <Link to={{
