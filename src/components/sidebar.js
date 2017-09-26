@@ -7,6 +7,16 @@ const Sidebar = (props) => {
     <div className='sidebar'>
       <div className='sidebar-section'>
         <div className='sidebar-section-header'>
+          <h4>Quick Links</h4>
+        </div>
+        <div className='sidebar-section-content'>
+          <div className='sidebar-section-content-item'>
+            <Link to='/'>Home</Link>
+          </div>
+        </div>
+      </div>
+      <div className='sidebar-section'>
+        <div className='sidebar-section-header'>
           <h4>Categories</h4>
         </div>
         <div className='sidebar-section-content'>

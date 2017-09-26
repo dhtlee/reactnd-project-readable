@@ -45,15 +45,20 @@ html, body, #root {
   line-height: 1.25rem;
 }
 
-.sidebar-section-header {
-  font-family: 'Droid Serif', Georgia, Times, serif;
-  border-bottom: 1px solid #DBDBDB;
-  letter-spacing: 1px;
-  color: #999999;
+.sidebar-section {
+  margin: 1rem 0 1rem 0;
 }
 
 .sidebar-section h4 {
   margin: 0px;
+}
+
+.sidebar-section-header {
+  font-family: 'Droid Serif', Georgia, Times, serif;
+  border-bottom: 1px solid #DBDBDB;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  color: #999999;
 }
 
 .content {
