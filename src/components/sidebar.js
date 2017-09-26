@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { capitalizeFirst } from 'utils/helper';
+
 const Sidebar = (props) => {
   return (
     <div className='sidebar'>
@@ -20,13 +22,11 @@ const Sidebar = (props) => {
           <h4>Categories</h4>
         </div>
         <div className='sidebar-section-content'>
-          <ul>
-            {props.categories.map((category) => (
-              <li key={category.name}>
-                <Link to={`/category/${category.name}`}>{category.name}</Link>
-              </li>
-            ))}
-          </ul>
+        {props.categories.map((category, index) => (
+          <div className='sidebar-section-content-item' key={index}>
+            <Link to={`/category/${category.name}`}>{capitalizeFirst(category.name)}</Link>
+          </div>
+        ))}
         </div>
       </div>
     </div>
