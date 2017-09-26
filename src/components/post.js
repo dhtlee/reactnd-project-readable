@@ -1,12 +1,22 @@
 import React from 'react';
+import FaHeartO from 'react-icons/lib/fa/heart-o';
 
-const Post = ({ title, body, author, timestamp }) => {
+import WhiteSpace from './white-space';
+
+const Post = ({ title, body, author, timestamp, voteScore }) => {
   const date = new Date(timestamp).toLocaleString();
   return (
     <div className='post'>
       <h2 className='post-title'>{title}</h2>
       <p className='post-author-date-time'>by <b>{author}</b> at {date}</p>
       <p className='post-body'>{body}</p>
+      <div className='post-stats'>
+        <div className='post-stats-score'>
+          <span>{voteScore}</span>
+          <WhiteSpace />
+          <FaHeartO />
+        </div>
+      </div>
     </div>
   )
 }
