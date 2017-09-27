@@ -29,14 +29,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  categories: state.categories,
-  posts: state.posts
-});
-
 const mapDispatchToProps = (dispatch) => ({
   loadCategories: (categories) => dispatch(getAllCategoriesSuccess(categories)),
   loadPosts: (posts) => dispatch(getAllPostsSuccess(posts))
 })
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));
+export default withRouter(connect(undefined, mapDispatchToProps)(App));

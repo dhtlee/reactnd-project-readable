@@ -6,12 +6,12 @@ import PostList from './post-list';
 import Post from './post';
 
 class Content extends Component {
-  filterPostByCategory(category) {
-    return this.props.posts.filter(post => post.category === category); 
+  filterPostByCategory(posts, category) {
+    return posts.filter(post => post.category === category); 
   }
 
-  filterPostByTitle(title) {
-    return this.props.posts.filter(post => post.title === title);
+  filterPostByTitle(posts, title) {
+    return posts.filter(post => post.title === title);
   }
 
   render() {
@@ -29,7 +29,7 @@ class Content extends Component {
           path='/posts/:title' 
           render={({ match }) => {
             const title = decodeURI(match.params.title);
-            const post = this.filterPostByTitle(title)[0];
+            const post = this.filterPostByTitle(posts, title)[0];
             return (
               <Post showDetail={true} {...post} />
             )
@@ -38,7 +38,7 @@ class Content extends Component {
         <Route 
           path='/categories/:name'
           render={({ match }) => (
-            <PostList posts={this.filterPostByCategory(match.params.name)} />
+            <PostList posts={this.filterPostByCategory(posts, match.params.name)} />
           )}
         />
       </div>
