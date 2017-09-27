@@ -4,7 +4,9 @@ import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
 import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
 import FaCommentO from 'react-icons/lib/fa/comment-o';
 
-const PostStats = () => (
+import WhiteSpace from './white-space';
+
+const PostStats = ({ voteScore }) => (
   <div className='post-stats'>
     <div className='post-score'>
       <span>{voteScore}</span>

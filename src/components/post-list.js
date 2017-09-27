@@ -10,7 +10,7 @@ const PostList = ({ posts }) => (
       <p>Whoops! There are no posts to display!</p>
       :
       posts.map(post => 
-        <Post key={post.id} {...post} />
+        <Post key={post.id} showDetail={false} {...post} />
       )
     }
   </div>

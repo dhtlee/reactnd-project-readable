@@ -30,7 +30,7 @@ class Content extends Component {
             const title = decodeURI(match.params.title);
             const post = this.filterPostByTitle(title)[0];
             return (
-              <Post {...post} />
+              <Post showDetail={true} {...post} />
             )
           }}
         />
