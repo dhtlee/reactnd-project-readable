@@ -12,10 +12,10 @@ const Categories = ({ location, categories }) => (
     <div className='sidebar-section-content'>
     {categories.map((category, index) => (
       <div className='sidebar-section-content-item' key={index}>
-        {location.pathname === `/category/${category.name}` ?
+        {location.pathname === `/categories/${category.name}` ?
         <span>{capitalizeFirst(category.name)}</span>
         :
-        <Link to={`/category/${category.name}`}>{capitalizeFirst(category.name)}</Link>
+        <Link to={`/categories/${category.name}`}>{capitalizeFirst(category.name)}</Link>
         }
       </div>
     ))}

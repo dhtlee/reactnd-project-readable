@@ -26,7 +26,7 @@ class Content extends Component {
           )}
         />
         <Route 
-          path='/post/:title' 
+          path='/posts/:title' 
           render={({ match }) => {
             const title = decodeURI(match.params.title);
             const post = this.filterPostByTitle(title)[0];
@@ -36,7 +36,7 @@ class Content extends Component {
           }}
         />
         <Route 
-          path='/category/:name'
+          path='/categories/:name'
           render={({ match }) => (
             <PostList posts={this.filterPostByCategory(match.params.name)} />
           )}

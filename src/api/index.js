@@ -1,5 +1,5 @@
-import { getCategories } from './category';
-import { getPosts } from './post';
+import { getCategories } from './categories';
+import { getPosts } from './posts';
 
 export default {
   getCategories,

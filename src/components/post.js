@@ -7,7 +7,7 @@ const Post = ({ showDetail, title, body, author, timestamp, voteScore }) => {
   const date = new Date(timestamp).toLocaleString();
   return (
     <div className='post'>
-      <Link to={`/post/${encodeURI(title)}`}>
+      <Link to={`/posts/${encodeURI(title)}`}>
         <h2 className='post-title'>{title}</h2>
       </Link>
       {showDetail ?
