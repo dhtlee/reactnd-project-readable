@@ -15,7 +15,8 @@ class Content extends Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts, sortBy } = this.props;
+    posts.sort((post1, post2) => post2[sortBy] - post1[sortBy]);
     return (
       <div className='content'>
         <Route exact 
@@ -46,7 +47,8 @@ class Content extends Component {
 };
 
 const mapStateToProps = (state) => ({
-  posts: state.posts
+  posts: state.posts,
+  sortBy: state.sortBy
 })
 
 export default withRouter(connect(mapStateToProps)(Content));

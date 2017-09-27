@@ -1,27 +1,36 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import WhiteSpace from './white-space';
+import { setSortBy } from 'actions';
+import SortLink from './sort-link';
 
-const Sorter = ({ location: { pathname } }) => {
+const Sorter = ({ sortBy, setSortBy }) => {
   return (
     <div className='content-sort'>
       Sort by:
-      <WhiteSpace />
-      <Link to={{
-        pathname,
-        search: `?sort=voteScore`
-        }}>Vote Score
-      </Link>
+      <SortLink
+        sortBy='voteScore'
+        currentSortBy={sortBy}
+        onClick={(sortBy) => setSortBy(sortBy)}>
+        Vote Score
+      </SortLink>
       ,
-      <WhiteSpace />
-      <Link to={{
-        pathname,
-        search: `?sort=timestamp`
-        }}>Posted time
-      </Link>
+      <SortLink
+        sortBy='timestamp'
+        currentSortBy={sortBy}
+        onClick={(sortBy) => setSortBy(sortBy)}>
+        Posted Time
+      </SortLink>
     </div>
   )
 }
 
-export default withRouter(Sorter);
+const mapStateToProps = (state) => ({
+  sortBy: state.sortBy
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setSortBy: (sortBy) => dispatch(setSortBy(sortBy))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sorter);

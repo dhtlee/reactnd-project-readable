@@ -1,16 +1,9 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 import Sorter from './sorter';
 import Post from './post';
 
-const PostList = ({ posts, location: { search } }) => {
-  const params = new URLSearchParams(search);
-  const sortBy = params.get('sort');
-  if (!!search && posts.length !== 0) {
-    posts.sort((post1, post2) => post2[sortBy] - post1[sortBy]);
-  }
-  
+const PostList = ({ posts }) => {
   return (
     <div className='post-list'>
       <Sorter />
@@ -25,4 +18,4 @@ const PostList = ({ posts, location: { search } }) => {
   )
 }
 
-export default withRouter(PostList);
+export default PostList;
