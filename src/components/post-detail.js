@@ -1,44 +1,36 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
-import Api from 'api';
-import { getAllCommentsSuccess } from 'actions';
+import LineSeparator from './line-separator';
 import PostStats from './post-stats';
+import CommentList from './comment-list';
 
 class Post extends Component {
-  componentDidMount() {
-  }
-
   onShowComments(postId) {
     console.log(`Post id = ${postId}`);
   }
 
   render() {
-    const { id, title, body, author, timestamp, voteScore } = this.props;
+    const { id, title, body, author, timestamp, voteScore, comments } = this.props;
     const date = new Date(timestamp).toLocaleString();
     return (
-      <div className='post-detail'>
-        <div>
-          <p className='post-author-date-time'>by <b>{author}</b> at {date}</p>
-          <p className='post-body'>{body}</p>
-          <PostStats 
-            postId={id}
-            showComments={this.onShowComments}
-            voteScore={voteScore}
-          />
+      <div>
+        <div className='post-detail'>
           <h2 className='heading'>{title}</h2>
+          <div>
+            <p className='author-date-time'>by <b>{author}</b> at {date}</p>
+            <p className='post-body'>{body}</p>
+            <PostStats 
+              postId={id}
+              showComments={this.onShowComments}
+              voteScore={voteScore}
+            />
+          </div>
         </div>
+        <LineSeparator />
+        <CommentList comments={comments} />
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  loadComments: (comments) => dispatch(getAllCommentsSuccess(comments))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default Post;

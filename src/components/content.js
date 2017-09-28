@@ -45,9 +45,12 @@ class Content extends Component {
   }
 };
 
-const mapStateToProps = (state) => ({
-  posts: state.posts,
-  sortBy: state.sortBy
+const mapStateToProps = ({ posts, comments, sortBy }) => ({
+  posts: posts.map((post) => ({
+    ...post,
+    comments: comments.filter(comment => comment.parentId === post.id)
+  })),
+  sortBy
 })
 
 export default withRouter(connect(mapStateToProps)(Content));

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import Api from 'api';
 import { getAllCategories, getAllPosts } from 'actions';
 import Header from './header';
 import Content from './content';
