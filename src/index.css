@@ -37,6 +37,11 @@ html, body, #root {
   font-family: 'Droid Serif', Georgia, Times, serif;
 }
 
+.line-separator {
+  margin: 1rem 0;
+  border-bottom: 1px solid #DBDBDB;
+}
+
 .header {
   grid-area: header;
 }
