@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import Api from 'api';
-import { getAllCategoriesSuccess, getAllPostsSuccess } from 'actions';
+import { getAllCategories, getAllPosts } from 'actions';
 import Header from './header';
 import Content from './content';
 import Sidebar from './sidebar';
@@ -11,10 +11,8 @@ import Footer from './footer';
 
 class App extends Component {
   componentDidMount() {
-    Api.getCategories()
-      .then(categories => this.props.loadCategories(categories));
-    Api.getPosts()
-      .then(posts => this.props.loadPosts(posts));
+    this.props.fetchCategories();
+    this.props.fetchPostsAndComments();
   }
 
   render() {
@@ -30,8 +28,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  loadCategories: (categories) => dispatch(getAllCategoriesSuccess(categories)),
-  loadPosts: (posts) => dispatch(getAllPostsSuccess(posts))
+  fetchCategories: () => dispatch(getAllCategories()),
+  fetchPostsAndComments: () => dispatch(getAllPosts())
 })
 
 export default withRouter(connect(undefined, mapDispatchToProps)(App));
