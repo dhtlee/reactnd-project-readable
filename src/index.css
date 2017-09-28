@@ -101,8 +101,13 @@ html, body, #root {
   align-items: center;
 }
 
+.post-stats-item {
+  display: flex;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 .post-stats button {
-  margin-left: 1rem;
   border: 1px solid black;
   border-radius: 3px;
   background: transparent;

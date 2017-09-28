@@ -7,7 +7,7 @@ const PostList = ({ posts }) => {
   return (
     <div className='post-list'>
       <Sorter />
-      {posts === undefined || posts.length === 0 ? 
+      {posts.length === 0 ? 
         <p><em>Whoops! There are no posts to display!</em></p>
         :
         posts.map(post => 

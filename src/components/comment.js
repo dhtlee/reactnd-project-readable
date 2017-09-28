@@ -1,13 +1,14 @@
 import React from 'react';
 
-const Comment = ({ author, timestamp, body }) => {
-  const date = new Date(timestamp).toLocaleString();
+import { formatDate } from 'utils/helper';
+
+const Comment = ({ body, author, timestamp }) => {
   return (
     <div>
       <div className='post-comment-body'>
         {body}
       </div>
-      <p className='author-date-time'>by <b>{author}</b> at {date}</p>
+      <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
     </div>
   )
 }

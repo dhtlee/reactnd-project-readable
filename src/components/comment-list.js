@@ -7,7 +7,7 @@ const CommentList = ({ comments }) => (
     <div className='post-comments'>
       <h3 className='heading'>Comments</h3>
     </div>
-    {comments === undefined || comments.length === 0 ? 
+    {comments.length === 0 ? 
       <p><em>Darn, looks like nobody cares about this post!</em></p>
       :
       comments.map(comment => <Comment key={comment.id} {...comment} />)
