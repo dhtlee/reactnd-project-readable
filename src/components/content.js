@@ -10,8 +10,8 @@ class Content extends Component {
     return posts.filter(post => post.category === category); 
   }
 
-  filterPostByTitle(posts, title) {
-    return posts.filter(post => post.title === title);
+  filterPostById(posts, id) {
+    return posts.filter(post => post.id === id);
   }
 
   render() {
@@ -26,10 +26,9 @@ class Content extends Component {
           )}
         />
         <Route 
-          path='/posts/:title' 
+          path='/posts/:id' 
           render={({ match }) => {
-            const title = decodeURI(match.params.title);
-            const post = this.filterPostByTitle(posts, title)[0];
+            const post = this.filterPostById(posts, match.params.id)[0];
             return (
               <PostDetail {...post} />
             )

@@ -11,7 +11,7 @@ const PostList = ({ posts }) => {
         <p>Whoops! There are no posts to display!</p>
         :
         posts.map(post => 
-          <PostSummary key={post.id} title={post.title} />
+          <PostSummary key={post.id} id={post.id} title={post.title} />
         )
       }
     </div>
