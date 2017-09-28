@@ -18,7 +18,6 @@ class Post extends Component {
     const date = new Date(timestamp).toLocaleString();
     return (
       <div className='post-detail'>
-        <h2 className='post-title'>{title}</h2>
         <div>
           <p className='post-author-date-time'>by <b>{author}</b> at {date}</p>
           <p className='post-body'>{body}</p>
@@ -27,6 +26,7 @@ class Post extends Component {
             showComments={this.onShowComments}
             voteScore={voteScore}
           />
+          <h2 className='heading'>{title}</h2>
         </div>
       </div>
     )

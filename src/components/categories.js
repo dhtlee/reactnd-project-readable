@@ -6,7 +6,7 @@ import { capitalizeFirst } from 'utils/helper';
 
 const Categories = ({ location, categories }) => (
   <div className='sidebar-section'>
-    <div className='sidebar-section-header'>
+    <div className='sidebar-section-header heading'>
       <h4>Categories</h4>
     </div>
     <div className='sidebar-section-content'>
