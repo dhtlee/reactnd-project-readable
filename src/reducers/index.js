@@ -29,7 +29,7 @@ const comments = (state = [], action) => {
     case GET_ALL_COMMENTS_SUCCESS:
       return [
         ...state,
-        action.comments
+        ...action.comments
       ];
     default:
       return state;
