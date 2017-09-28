@@ -10,7 +10,7 @@ export const getAllCategories = () => (dispatch) => {
     .then(categories => dispatch(getAllCategoriesSuccess(categories)));
 }
 
-export const getAllCategoriesSuccess = (categories) => {
+const getAllCategoriesSuccess = (categories) => {
   return {
     type: GET_ALL_CATEGORIES_SUCCESS,
     categories
@@ -25,19 +25,19 @@ export const getAllPosts = () => (dispatch) => {
     })
 }
 
-export const getAllPostsSuccess = (posts) => {
+const getAllPostsSuccess = (posts) => {
   return {
     type: GET_ALL_POSTS_SUCCESS,
     posts
   }
 }
 
-export const getAllComments = (postId) => (dispatch) => {
+const getAllComments = (postId) => (dispatch) => {
   Api.getComments(postId)
     .then(comments => dispatch(getAllCommentsSuccess(comments)));
 }
 
-export const getAllCommentsSuccess = (comments) => {
+const getAllCommentsSuccess = (comments) => {
   return {
     type: GET_ALL_COMMENTS_SUCCESS,
     comments
