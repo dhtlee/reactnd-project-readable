@@ -6,7 +6,7 @@ import FaCommentO from 'react-icons/lib/fa/comment-o';
 
 import WhiteSpace from './white-space';
 
-const PostStats = ({ voteScore }) => (
+const PostStats = ({ postId, showComments, voteScore }) => (
   <div className='post-stats'>
     <div className='post-score'>
       <span>{voteScore}</span>
@@ -19,7 +19,11 @@ const PostStats = ({ voteScore }) => (
     <button>
       <FaThumbsODown />
     </button>
-    <button>
+    <button 
+      onClick={event => {
+        event.preventDefault();
+        showComments(postId)
+      }}>
       <FaCommentO />
     </button>
   </div>

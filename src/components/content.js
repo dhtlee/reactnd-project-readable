@@ -3,7 +3,7 @@ import { withRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import PostList from './post-list';
-import Post from './post';
+import PostDetail from './post-detail';
 
 class Content extends Component {
   filterPostByCategory(posts, category) {
@@ -31,7 +31,7 @@ class Content extends Component {
             const title = decodeURI(match.params.title);
             const post = this.filterPostByTitle(posts, title)[0];
             return (
-              <Post showDetail={true} {...post} />
+              <PostDetail {...post} />
             )
           }}
         />

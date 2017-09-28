@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Sorter from './sorter';
-import Post from './post';
+import PostSummary from './post-summary';
 
 const PostList = ({ posts }) => {
   return (
@@ -11,7 +11,7 @@ const PostList = ({ posts }) => {
         <p>Whoops! There are no posts to display!</p>
         :
         posts.map(post => 
-          <Post key={post.id} showDetail={false} {...post} />
+          <PostSummary key={post.id} title={post.title} />
         )
       }
     </div>
