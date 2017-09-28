@@ -1,5 +1,6 @@
 export const GET_ALL_CATEGORIES_SUCCESS = 'GET_ALL_CATEGORIES_SUCCESS';
 export const GET_ALL_POSTS_SUCCESS = 'GET_ALL_POSTS_SUCCESS';
+export const GET_ALL_COMMENTS_SUCCESS = 'GET_ALL_COMMENTS_SUCCESS';
 export const SET_SORT_BY = 'SET_SORT_BY';
 
 export const getAllCategoriesSuccess = (categories) => {
@@ -13,6 +14,13 @@ export const getAllPostsSuccess = (posts) => {
   return {
     type: GET_ALL_POSTS_SUCCESS,
     posts
+  }
+}
+
+export const getAllCommentsSuccess = (comments) => {
+  return {
+    type: GET_ALL_COMMENTS_SUCCESS,
+    comments
   }
 }
 
