@@ -91,31 +91,57 @@ html, body, #root {
   flex-flow: column;
 }
 
-.author-date-time {
-  transform: translateX(0.5rem) translateY(-0.8rem);
-  font-size: 0.8rem;
+.content-container-post {
+  display: flex;
+  align-items: baseline;
 }
 
-.post-stats {
+.content-container-comment {
+  transform: scale(0.9, 0.9);
   display: flex;
+  margin-bottom: 1rem;
+}
+
+.stats {
+  display: flex;
+  flex-flow: column;
   align-items: center;
 }
 
-.post-stats-item {
+.stats-item {
+  transform: translateY(-3px) scale(1.2, 1.2);
+  margin-bottom: 14px;
+  margin-right: 20px;
+  line-height: 4px;
+}
+
+.author-date-time {
+  transform: translateX(0.5rem) translateY(-0.8rem);
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  height: 10px;
+}
+
+[class$='detail'] {
+  flex-grow: 1;
+}
+
+.comment-detail {
   display: flex;
-  margin-right: 10px;
-  margin-left: 10px;
+  flex-flow: column;
 }
 
-.post-stats button {
+.comment-body {
   border: 1px solid black;
-  border-radius: 3px;
-  background: transparent;
-}
-
-.post-comment-body {
-  border: 1px solid black;
-  border-radius: 3px;
-  margin-bottom: 1rem;
+  border-radius: 4px;
+  margin-bottom: 4px;
   padding: 0.5rem 0.5rem;
+}
+
+.content-control {
+  display: flex;
+}
+
+.content-control-item {
+  margin-right: 12px;
 }

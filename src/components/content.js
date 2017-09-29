@@ -32,8 +32,8 @@ class Content extends Component {
             const post = this.filterPostById(posts, match.params.id)[0];
             return (
               <PostDetail {...post} 
-                onUpvotePost={() => this.props.onUpvotePost(post.id)}
-                onDownvotePost={() => this.props.onDownvotePost(post.id)}
+                onUpvotePost={(id) => this.props.onUpvotePost(id)}
+                onDownvotePost={(id) => this.props.onDownvotePost(id)}
               />
             )
           }}
