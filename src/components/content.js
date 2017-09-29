@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import PostList from './post-list';
 import PostDetail from './post-detail';
-import { upvotePost, downvotePost } from 'actions';
+import { upvotePost, downvotePost, upvoteComment, downvoteComment } from 'actions';
 
 class Content extends Component {
   filterPostByCategory(posts, category) {
@@ -34,6 +34,8 @@ class Content extends Component {
               <PostDetail {...post} 
                 onUpvotePost={(id) => this.props.onUpvotePost(id)}
                 onDownvotePost={(id) => this.props.onDownvotePost(id)}
+                onUpvoteComment={(id) => this.props.onUpvoteComment(id)}
+                onDownvoteComment={(id) => this.props.onDownvoteComment(id)}
               />
             )
           }}
@@ -59,7 +61,9 @@ const mapStateToProps = ({ posts, comments, sortBy }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onUpvotePost: (id) => dispatch(upvotePost(id)),
-  onDownvotePost: (id) => dispatch(downvotePost(id))
+  onDownvotePost: (id) => dispatch(downvotePost(id)),
+  onUpvoteComment: (id) => dispatch(upvoteComment(id)),
+  onDownvoteComment: (id) => dispatch(downvoteComment(id))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));

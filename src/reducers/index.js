@@ -5,6 +5,8 @@ import {
   UPVOTE_POST,
   DOWNVOTE_POST,
   GET_ALL_COMMENTS_SUCCESS,
+  UPVOTE_COMMENT,
+  DOWNVOTE_COMMENT,
   SET_SORT_BY
 } from 'actions';
 
@@ -59,6 +61,32 @@ const comments = (state = [], action) => {
         ...state,
         ...action.comments
       ];
+    case UPVOTE_COMMENT:
+    case DOWNVOTE_COMMENT:
+      return state.map(c => comment(c, action));
+    default:
+      return state;
+  }
+}
+
+const comment = (state = {}, action) => {
+  switch(action.type) {
+    case UPVOTE_COMMENT:
+      if (state.id !== action.id) {
+        return state;
+      }
+      return {
+        ...state,
+        voteScore: state.voteScore + 1
+      }
+    case DOWNVOTE_COMMENT:
+      if (state.id !== action.id) {
+        return state;
+      }
+      return {
+        ...state,
+        voteScore: state.voteScore - 1
+      }
     default:
       return state;
   }

@@ -9,14 +9,14 @@ import { formatDate } from 'utils/helper';
 class Post extends Component {
   render() {
     const { id, title, body, author, timestamp, voteScore, comments = [],
-            onUpvotePost, onDownvotePost } = this.props;
+            onUpvotePost, onDownvotePost, onUpvoteComment, onDownvoteComment } = this.props;
     return (
       <div>
         <div className='content-container-post'>
           <Stats 
             id={id}
-            onUpvotePost={onUpvotePost}
-            onDownvotePost={onDownvotePost}
+            onUpvote={onUpvotePost}
+            onDownvote={onDownvotePost}
             voteScore={voteScore}
           />
           <div className='post-detail'>
@@ -27,7 +27,11 @@ class Post extends Component {
           </div>
         </div>
         <LineSeparator />
-        <CommentList comments={comments} />
+        <CommentList 
+          comments={comments}
+          onUpvoteComment={onUpvoteComment}
+          onDownvoteComment={onDownvoteComment}
+        />
       </div>
     )
   }
