@@ -6,7 +6,7 @@ import FaCommentO from 'react-icons/lib/fa/comment-o';
 
 import WhiteSpace from './white-space';
 
-const PostStats = ({ postId, showComments, voteScore, commentsCount }) => (
+const PostStats = ({ postId, voteScore, commentsCount }) => (
   <div className='post-stats'>
     <div className='post-stats-item'>
       <span>{voteScore}</span>

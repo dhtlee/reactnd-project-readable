@@ -6,10 +6,6 @@ import CommentList from './comment-list';
 import { formatDate } from 'utils/helper';
 
 class Post extends Component {
-  onShowComments(postId) {
-    console.log(`Post id = ${postId}`);
-  }
-
   render() {
     const { id, title, body, author, timestamp, voteScore, comments = []} = this.props;
     return (
@@ -21,7 +17,6 @@ class Post extends Component {
             <p className='post-body'>{body}</p>
             <PostStats 
               postId={id}
-              showComments={this.onShowComments}
               voteScore={voteScore}
               commentsCount={comments.length}
             />
