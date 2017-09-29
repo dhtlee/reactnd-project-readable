@@ -11,7 +11,13 @@ const PostList = ({ posts }) => {
         <p><em>Whoops! There are no posts to display!</em></p>
         :
         posts.map(post => 
-          <PostSummary key={post.id} id={post.id} title={post.title} />
+          <PostSummary
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            author={post.author}
+            timestamp={post.timestamp}  
+          />
         )
       }
     </div>
