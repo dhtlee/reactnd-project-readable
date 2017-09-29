@@ -7,7 +7,8 @@ import { formatDate } from 'utils/helper';
 
 class Post extends Component {
   render() {
-    const { id, title, body, author, timestamp, voteScore, comments = []} = this.props;
+    const { id, title, body, author, timestamp, voteScore, comments = [],
+            onUpvotePost, onDownvotePost } = this.props;
     return (
       <div>
         <div className='post-detail'>
@@ -17,6 +18,8 @@ class Post extends Component {
             <p className='post-body'>{body}</p>
             <PostStats 
               postId={id}
+              onUpvotePost={onUpvotePost}
+              onDownvotePost={onDownvotePost}
               voteScore={voteScore}
               commentsCount={comments.length}
             />

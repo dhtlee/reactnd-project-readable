@@ -6,7 +6,7 @@ import FaCommentO from 'react-icons/lib/fa/comment-o';
 
 import WhiteSpace from './white-space';
 
-const PostStats = ({ postId, voteScore, commentsCount }) => (
+const PostStats = ({ postId, voteScore, commentsCount, onUpvotePost, onDownvotePost }) => (
   <div className='post-stats'>
     <div className='post-stats-item'>
       <span>{voteScore}</span>
@@ -14,12 +14,12 @@ const PostStats = ({ postId, voteScore, commentsCount }) => (
       <FaHeartO />
     </div>
     <div className='post-stats-item'>
-      <button>
+      <button onClick={onUpvotePost}>
         <FaThumbsOUp />
       </button>
     </div>
     <div className='post-stats-item'>
-      <button>
+      <button onClick={onDownvotePost}>
         <FaThumbsODown />
       </button>
     </div>
