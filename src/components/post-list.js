@@ -1,11 +1,13 @@
 import React from 'react';
 
+import SorterDropdown from './sorter-dropdown';
 import Sorter from './sorter';
 import PostSummary from './post-summary';
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts, onUpvotePost, onDownvotePost }) => {
   return (
     <div className='post-list'>
+      {/* <SorterDropdown /> */}
       <Sorter />
       {posts.length === 0 ? 
         <p><em>Whoops! There are no posts to display!</em></p>
@@ -13,10 +15,9 @@ const PostList = ({ posts }) => {
         posts.map(post => 
           <PostSummary
             key={post.id}
-            id={post.id}
-            title={post.title}
-            author={post.author}
-            timestamp={post.timestamp}  
+            {...post}
+            onUpvotePost={onUpvotePost}
+            onDownvotePost={onDownvotePost}
           />
         )
       }

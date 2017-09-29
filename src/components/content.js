@@ -23,7 +23,11 @@ class Content extends Component {
         <Route exact 
           path='/' 
           render={() => (
-            <PostList posts={posts} />
+            <PostList 
+              posts={posts}
+              onUpvotePost={(id) => this.props.onUpvotePost(id)}
+              onDownvotePost={(id) => this.props.onDownvotePost(id)}
+            />
           )}
         />
         <Route 
@@ -43,7 +47,11 @@ class Content extends Component {
         <Route 
           path='/categories/:name'
           render={({ match }) => (
-            <PostList posts={this.filterPostByCategory(posts, match.params.name)} />
+            <PostList 
+              posts={this.filterPostByCategory(posts, match.params.name)}
+              onUpvotePost={(id) => this.props.onUpvotePost(id)}
+              onDownvotePost={(id) => this.props.onDownvotePost(id)}
+            />
           )}
         />
       </div>
