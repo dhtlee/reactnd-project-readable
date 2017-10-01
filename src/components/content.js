@@ -4,7 +4,13 @@ import { connect } from 'react-redux';
 
 import PostList from './post-list';
 import PostDetail from './post-detail';
-import { upvotePost, downvotePost, upvoteComment, downvoteComment } from 'actions';
+import {
+  upvotePost,
+  downvotePost,
+  upvoteComment,
+  downvoteComment,
+  setSortBy
+} from 'actions';
 
 class Content extends Component {
   filterPostByCategory(posts, category) {
@@ -16,8 +22,8 @@ class Content extends Component {
   }
 
   render() {
-    const { posts, sortBy } = this.props;
-    posts.sort((post1, post2) => post2[sortBy] - post1[sortBy]);
+    const { posts, sortBy, onUpvotePost, onDownvotePost,
+      onUpvoteComment, onDownvoteComment, onSelectSortBy } = this.props;
     return (
       <div className='content'>
         <Route exact 
@@ -25,8 +31,10 @@ class Content extends Component {
           render={() => (
             <PostList 
               posts={posts}
-              onUpvotePost={(id) => this.props.onUpvotePost(id)}
-              onDownvotePost={(id) => this.props.onDownvotePost(id)}
+              onUpvotePost={onUpvotePost}
+              onDownvotePost={onDownvotePost}
+              currentSortBy={sortBy.posts}
+              onSelectSortBy={onSelectSortBy}
             />
           )}
         />
@@ -36,10 +44,10 @@ class Content extends Component {
             const post = this.filterPostById(posts, match.params.id)[0];
             return (
               <PostDetail {...post} 
-                onUpvotePost={(id) => this.props.onUpvotePost(id)}
-                onDownvotePost={(id) => this.props.onDownvotePost(id)}
-                onUpvoteComment={(id) => this.props.onUpvoteComment(id)}
-                onDownvoteComment={(id) => this.props.onDownvoteComment(id)}
+                onUpvotePost={onUpvotePost}
+                onDownvotePost={onDownvotePost}
+                onUpvoteComment={onUpvoteComment}
+                onDownvoteComment={onDownvoteComment}
               />
             )
           }}
@@ -49,8 +57,10 @@ class Content extends Component {
           render={({ match }) => (
             <PostList 
               posts={this.filterPostByCategory(posts, match.params.name)}
-              onUpvotePost={(id) => this.props.onUpvotePost(id)}
-              onDownvotePost={(id) => this.props.onDownvotePost(id)}
+              onUpvotePost={onUpvotePost}
+              onDownvotePost={onDownvotePost}
+              currentSortBy={sortBy.posts}
+              onSelectSortBy={onSelectSortBy}
             />
           )}
         />
@@ -71,7 +81,8 @@ const mapDispatchToProps = (dispatch) => ({
   onUpvotePost: (id) => dispatch(upvotePost(id)),
   onDownvotePost: (id) => dispatch(downvotePost(id)),
   onUpvoteComment: (id) => dispatch(upvoteComment(id)),
-  onDownvoteComment: (id) => dispatch(downvoteComment(id))
+  onDownvoteComment: (id) => dispatch(downvoteComment(id)),
+  onSelectSortBy: (content) => (type, order) => dispatch(setSortBy(content, type, order))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));

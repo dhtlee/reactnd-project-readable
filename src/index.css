@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans');
 
-html, body, #root {
+html, body, select, #root {
   background: url('background.jpg');
   background-size: cover;
   max-width: 100vw;

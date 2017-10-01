@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
+
+import { sortContent } from 'utils/helper';
 import {
   GET_ALL_CATEGORIES_SUCCESS,
   GET_ALL_POSTS_SUCCESS,
+  SORT_POSTS,
   UPVOTE_POST,
   DOWNVOTE_POST,
   GET_ALL_COMMENTS_SUCCESS,
@@ -9,6 +12,17 @@ import {
   DOWNVOTE_COMMENT,
   SET_SORT_BY
 } from 'actions';
+
+const DEFAULT_SORT_BY = {
+  posts: {
+    type: 'voteScore',
+    order: 'descending'
+  },
+  comments: {
+    type: 'voteScore',
+    order: 'descending'
+  } 
+}
 
 const categories = (state = [], action) => {
   switch(action.type) {
@@ -26,6 +40,10 @@ const posts = (state = [], action) => {
     case UPVOTE_POST:
     case DOWNVOTE_POST:
       return state.map(p => post(p, action));
+    case SORT_POSTS:
+      const newState = [ ...state ];
+      sortContent[action.order](newState, action.sortByType);
+      return newState;
     default:
       return state;
   }
@@ -92,10 +110,16 @@ const comment = (state = {}, action) => {
   }
 }
 
-const sortBy = (state = 'voteScore', action) => {
+const sortBy = (state = DEFAULT_SORT_BY, action) => {
   switch(action.type) {
     case SET_SORT_BY:
-      return action.sortBy;
+      return {
+        ...state,
+        [action.content]: {
+          type: action.sortByType,
+          order: action.order
+        }
+      }
     default:
       return state;
   }

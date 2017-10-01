@@ -1,36 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import { setSortBy } from 'actions';
-import SortLink from './sort-link';
-
-const Sorter = ({ sortBy, setSortBy }) => {
+const Sorter = ({ currentSelection, onSelect }) => {
+  const getValueFromParams = ({ type, order }) => `${type}-${order}`;
+  const getParamsFromValue = (value) => value.split('-');
   return (
-    <div className='content-sort'>
-      Sort by:
-      <SortLink
-        sortBy='voteScore'
-        currentSortBy={sortBy}
-        onClick={(sortBy) => setSortBy(sortBy)}>
-        Vote Score
-      </SortLink>
-      ,
-      <SortLink
-        sortBy='timestamp'
-        currentSortBy={sortBy}
-        onClick={(sortBy) => setSortBy(sortBy)}>
-        Posted Time
-      </SortLink>
+    <div className='sorter'>
+      <select value={getValueFromParams(currentSelection)}
+              onChange={(event) => onSelect(...getParamsFromValue(event.target.value))}>
+        <option value='voteScore-descending'>Score: Highest to lowest</option>
+        <option value='voteScore-ascending'>Score: Lowest to highest</option>
+        <option value='timestamp-descending'>Posted Date: Newest to oldest</option>
+        <option value='timestamp-ascending'>Posted Date: Oldest to newest</option>
+      </select>
     </div>
   )
 }
 
-const mapStateToProps = (state) => ({
-  sortBy: state.sortBy
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  setSortBy: (sortBy) => dispatch(setSortBy(sortBy))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sorter);
+export default Sorter;
