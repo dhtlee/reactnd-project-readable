@@ -14,7 +14,9 @@ export const DOWNVOTE_POST_SUCCESS = 'DOWNVOTE_POST_SUCCESS';
 export const GET_ALL_COMMENTS_SUCCESS = 'GET_ALL_COMMENTS_SUCCESS';
 export const SORT_COMMENTS = 'SORT_COMMENTS';
 export const UPVOTE_COMMENT = 'UPVOTE_COMMENT';
+export const UPVOTE_COMMENT_SUCCESS = 'UPVOTE_COMMENT_SUCCESS';
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
+export const DOWNVOTE_COMMENT_SUCCESS = 'DOWNVOTE_COMMENT_SUCCESS';
 export const SET_SORT_BY = 'SET_SORT_BY';
 
 export const getAllCategories = () => (dispatch) => {
@@ -96,16 +98,26 @@ const sortComments = (sortByType, order) => {
   }
 }
 
-export const upvoteComment = (id) => {
+export const upvoteComment = (id) => (dispatch) => {
+  Api.upvoteComment(id)
+    .then(({ id }) => dispatch(upvoteCommentSuccess(id)));
+}
+
+const upvoteCommentSuccess = (id) => {
   return {
-    type: UPVOTE_COMMENT,
+    type: UPVOTE_COMMENT_SUCCESS,
     id
   }
 }
 
-export const downvoteComment = id => {
+export const downvoteComment = (id) => (dispatch) => {
+  Api.downvoteComment(id)
+    .then(({ id }) => dispatch(downvoteCommentSuccess(id)));
+}
+
+const downvoteCommentSuccess = (id) => {
   return {
-    type: DOWNVOTE_COMMENT,
+    type: DOWNVOTE_COMMENT_SUCCESS,
     id
   }
 }

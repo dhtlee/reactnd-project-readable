@@ -9,8 +9,8 @@ import {
   DOWNVOTE_POST_SUCCESS,
   GET_ALL_COMMENTS_SUCCESS,
   SORT_COMMENTS,
-  UPVOTE_COMMENT,
-  DOWNVOTE_COMMENT,
+  UPVOTE_COMMENT_SUCCESS,
+  DOWNVOTE_COMMENT_SUCCESS,
   SET_SORT_BY
 } from 'actions';
 
@@ -84,8 +84,8 @@ const comments = (state = [], action) => {
       const newState = [ ...state ];
       sortContent[action.order](newState, action.sortByType);
       return newState;
-    case UPVOTE_COMMENT:
-    case DOWNVOTE_COMMENT:
+    case UPVOTE_COMMENT_SUCCESS:
+    case DOWNVOTE_COMMENT_SUCCESS:
       return state.map(c => comment(c, action));
     default:
       return state;
@@ -94,7 +94,7 @@ const comments = (state = [], action) => {
 
 const comment = (state = {}, action) => {
   switch(action.type) {
-    case UPVOTE_COMMENT:
+    case UPVOTE_COMMENT_SUCCESS:
       if (state.id !== action.id) {
         return state;
       }
@@ -102,7 +102,7 @@ const comment = (state = {}, action) => {
         ...state,
         voteScore: state.voteScore + 1
       }
-    case DOWNVOTE_COMMENT:
+    case DOWNVOTE_COMMENT_SUCCESS:
       if (state.id !== action.id) {
         return state;
       }
