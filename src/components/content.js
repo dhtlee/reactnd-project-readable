@@ -4,13 +4,9 @@ import { connect } from 'react-redux';
 
 import PostList from './post-list';
 import PostDetail from './post-detail';
-import {
-  upvotePost,
-  downvotePost,
-  upvoteComment,
-  downvoteComment,
-  setSortBy
-} from 'actions';
+import { upvotePost, downvotePost } from 'actions/posts';
+import { upvoteComment, downvoteComment } from 'actions/comments';
+import { setSortBy } from 'actions/sort-by';
 
 class Content extends Component {
   filterPostByCategory(posts, category) {

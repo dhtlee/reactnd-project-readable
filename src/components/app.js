@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { getAllCategories, getAllPosts } from 'actions';
+import { getAllPostsAndComments } from 'actions/posts';
+import { getAllCategories } from 'actions/categories';
 import Header from './header';
 import Content from './content';
 import Sidebar from './sidebar';
@@ -28,7 +29,7 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCategories: () => dispatch(getAllCategories()),
-  fetchPostsAndComments: () => dispatch(getAllPosts())
+  fetchPostsAndComments: () => dispatch(getAllPostsAndComments())
 })
 
 export default withRouter(connect(undefined, mapDispatchToProps)(App));
