@@ -1,5 +1,6 @@
 import Api from 'api';
 
+// magic keywords used in state
 export const CONTENT_POSTS = 'posts';
 export const CONTENT_COMMENTS = 'comments';
 
@@ -7,7 +8,9 @@ export const GET_ALL_CATEGORIES_SUCCESS = 'GET_ALL_CATEGORIES_SUCCESS';
 export const GET_ALL_POSTS_SUCCESS = 'GET_ALL_POSTS_SUCCESS';
 export const SORT_POSTS = 'SORT_POSTS';
 export const UPVOTE_POST = 'UPVOTE_POST';
+export const UPVOTE_POST_SUCCESS = 'UPVOTE_POST_SUCCESS';
 export const DOWNVOTE_POST = 'DOWNVOTE_POST';
+export const DOWNVOTE_POST_SUCCESS = 'DOWNVOTE_POST_SUCCESS';
 export const GET_ALL_COMMENTS_SUCCESS = 'GET_ALL_COMMENTS_SUCCESS';
 export const SORT_COMMENTS = 'SORT_COMMENTS';
 export const UPVOTE_COMMENT = 'UPVOTE_COMMENT';
@@ -30,7 +33,7 @@ export const getAllPosts = () => (dispatch) => {
   Api.getPosts()
     .then(posts => {
       dispatch(getAllPostsSuccess(posts));
-      posts.map((post) => dispatch(getAllComments(post.id)));
+      posts.map(({ id }) => dispatch(getAllComments(id)));
     })
 }
 
@@ -49,16 +52,26 @@ const sortPosts = (sortByType, order) => {
   }
 }
 
-export const upvotePost = (id) => {
+export const upvotePost = (id) => (dispatch) => {
+  Api.upvotePost(id)
+    .then(({ id }) => dispatch(upvotePostSuccess(id)));
+}
+
+const upvotePostSuccess = (id) => {
   return {
-    type: UPVOTE_POST,
+    type: UPVOTE_POST_SUCCESS,
     id
   }
 }
 
-export const downvotePost = id => {
+export const downvotePost = (id) => (dispatch) => {
+  Api.downvotePost(id)
+    .then(({ id }) => dispatch(downvotePostSuccess(id)));
+}
+
+const downvotePostSuccess = (id) => {
   return {
-    type: DOWNVOTE_POST,
+    type: DOWNVOTE_POST_SUCCESS,
     id
   }
 }

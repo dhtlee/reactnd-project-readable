@@ -5,8 +5,8 @@ import {
   GET_ALL_CATEGORIES_SUCCESS,
   GET_ALL_POSTS_SUCCESS,
   SORT_POSTS,
-  UPVOTE_POST,
-  DOWNVOTE_POST,
+  UPVOTE_POST_SUCCESS,
+  DOWNVOTE_POST_SUCCESS,
   GET_ALL_COMMENTS_SUCCESS,
   SORT_COMMENTS,
   UPVOTE_COMMENT,
@@ -42,8 +42,8 @@ const posts = (state = [], action) => {
       const newState = [ ...state ];
       sortContent[action.order](newState, action.sortByType);
       return newState;
-    case UPVOTE_POST:
-    case DOWNVOTE_POST:
+    case UPVOTE_POST_SUCCESS:
+    case DOWNVOTE_POST_SUCCESS:
       return state.map(p => post(p, action));
     default:
       return state;
@@ -52,7 +52,7 @@ const posts = (state = [], action) => {
 
 const post = (state = {}, action) => {
   switch(action.type) {
-    case UPVOTE_POST:
+    case UPVOTE_POST_SUCCESS:
       if (state.id !== action.id) {
         return state;
       }
@@ -60,7 +60,7 @@ const post = (state = {}, action) => {
         ...state,
         voteScore: state.voteScore + 1
       }
-    case DOWNVOTE_POST:
+    case DOWNVOTE_POST_SUCCESS:
       if (state.id !== action.id) {
         return state;
       }
