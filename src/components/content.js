@@ -48,6 +48,8 @@ class Content extends Component {
                 onDownvotePost={onDownvotePost}
                 onUpvoteComment={onUpvoteComment}
                 onDownvoteComment={onDownvoteComment}
+                currentSortBy={sortBy.comments}
+                onSelectSortBy={onSelectSortBy}
               />
             )
           }}

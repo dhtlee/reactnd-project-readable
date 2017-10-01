@@ -8,6 +8,7 @@ import {
   UPVOTE_POST,
   DOWNVOTE_POST,
   GET_ALL_COMMENTS_SUCCESS,
+  SORT_COMMENTS,
   UPVOTE_COMMENT,
   DOWNVOTE_COMMENT,
   SET_SORT_BY
@@ -37,13 +38,13 @@ const posts = (state = [], action) => {
   switch(action.type) {
     case GET_ALL_POSTS_SUCCESS:
       return action.posts;
-    case UPVOTE_POST:
-    case DOWNVOTE_POST:
-      return state.map(p => post(p, action));
     case SORT_POSTS:
       const newState = [ ...state ];
       sortContent[action.order](newState, action.sortByType);
       return newState;
+    case UPVOTE_POST:
+    case DOWNVOTE_POST:
+      return state.map(p => post(p, action));
     default:
       return state;
   }
@@ -79,6 +80,10 @@ const comments = (state = [], action) => {
         ...state,
         ...action.comments
       ];
+    case SORT_COMMENTS:
+      const newState = [ ...state ];
+      sortContent[action.order](newState, action.sortByType);
+      return newState;
     case UPVOTE_COMMENT:
     case DOWNVOTE_COMMENT:
       return state.map(c => comment(c, action));

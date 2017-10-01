@@ -9,7 +9,8 @@ import { formatDate } from 'utils/helper';
 class Post extends Component {
   render() {
     const { id, title, body, author, timestamp, voteScore, comments = [],
-            onUpvotePost, onDownvotePost, onUpvoteComment, onDownvoteComment } = this.props;
+            onUpvotePost, onDownvotePost, onUpvoteComment, onDownvoteComment,
+            currentSortBy, onSelectSortBy } = this.props;
     return (
       <div>
         <div className='content-container-post'>
@@ -31,6 +32,8 @@ class Post extends Component {
           comments={comments}
           onUpvoteComment={onUpvoteComment}
           onDownvoteComment={onDownvoteComment}
+          currentSortBy={currentSortBy}
+          onSelectSortBy={onSelectSortBy}
         />
       </div>
     )
