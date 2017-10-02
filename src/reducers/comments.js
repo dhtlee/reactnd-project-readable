@@ -4,7 +4,7 @@ import {
   SORT_COMMENTS,
   UPVOTE_COMMENT_SUCCESS,
   DOWNVOTE_COMMENT_SUCCESS
-} from 'actions';
+} from 'actions/constants';
 
 const comments = (state = [], action) => {
   switch(action.type) {

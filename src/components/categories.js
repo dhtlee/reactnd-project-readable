@@ -23,8 +23,8 @@ const Categories = ({ location, categories }) => (
   </div>
 )
 
-const mapStateToProps = (state) => ({
-  categories: state.categories
+const mapStateToProps = ({ categories }) => ({
+  categories
 })
 
 export default withRouter(connect(mapStateToProps)(Categories));

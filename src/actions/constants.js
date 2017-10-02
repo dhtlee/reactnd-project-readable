@@ -1,6 +1,3 @@
-import Api from 'api';
-import { sortPosts } from './posts';
-
 // magic keywords used in state
 export const CONTENT_POSTS = 'posts';
 export const CONTENT_COMMENTS = 'comments';

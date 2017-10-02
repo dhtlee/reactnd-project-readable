@@ -1,4 +1,4 @@
-import { SET_SORT_BY, CONTENT_POSTS, CONTENT_COMMENTS } from 'actions';
+import { SET_SORT_BY, CONTENT_POSTS, CONTENT_COMMENTS } from 'actions/constants';
 import { sortPosts } from './posts';
 import { sortComments } from './comments';
 

@@ -1,4 +1,4 @@
-import { BASE_URL, HEADERS, OPTION_UPVOTE, OPTION_DOWNVOTE } from 'api';
+import { BASE_URL, HEADERS, OPTION_UPVOTE, OPTION_DOWNVOTE } from './constants';
 
 export const getPosts = () => {
   return fetch(`${BASE_URL}/posts`, { headers: HEADERS })

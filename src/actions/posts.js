@@ -1,7 +1,7 @@
 import Api from 'api';
 import { getAllComments } from 'actions/comments';
 import { GET_ALL_POSTS_SUCCESS, SORT_POSTS, 
-  UPVOTE_POST_SUCCESS, DOWNVOTE_POST_SUCCESS } from 'actions';
+  UPVOTE_POST_SUCCESS, DOWNVOTE_POST_SUCCESS } from 'actions/constants';
 
 export const getAllPostsAndComments = () => (dispatch) => {
   Api.getPosts()

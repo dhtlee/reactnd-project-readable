@@ -1,4 +1,4 @@
-import { SET_SORT_BY } from 'actions';
+import { SET_SORT_BY } from 'actions/constants';
 
 const DEFAULT_SORT_BY = {
   posts: {

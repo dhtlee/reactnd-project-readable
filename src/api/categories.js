@@ -1,4 +1,4 @@
-import { BASE_URL, HEADERS } from 'api';
+import { BASE_URL, HEADERS } from './constants';
 
 export const getCategories = () => {
   return fetch(`${BASE_URL}/categories`, { headers: HEADERS })

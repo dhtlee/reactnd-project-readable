@@ -4,7 +4,7 @@ import {
   SORT_POSTS,
   UPVOTE_POST_SUCCESS,
   DOWNVOTE_POST_SUCCESS
-} from 'actions';
+} from 'actions/constants';
 
 const posts = (state = [], action) => {
   switch(action.type) {

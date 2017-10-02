@@ -1,5 +1,5 @@
 import Api from 'api';
-import { GET_ALL_CATEGORIES_SUCCESS } from 'actions';
+import { GET_ALL_CATEGORIES_SUCCESS } from 'actions/constants';
 
 export const getAllCategories = () => (dispatch) => {
   Api.getCategories()
