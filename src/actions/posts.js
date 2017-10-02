@@ -1,12 +1,15 @@
 import Api from 'api';
 import { getAllComments } from 'actions/comments';
-import { GET_ALL_POSTS_SUCCESS, SORT_POSTS, 
-  UPVOTE_POST_SUCCESS, DOWNVOTE_POST_SUCCESS } from 'actions/constants';
+import {
+  GET_ALL_POSTS_SUCCESS, SORT_POSTS, UPVOTE_POST_SUCCESS, DOWNVOTE_POST_SUCCESS
+} from 'actions/constants';
+import { DEFAULT_SORT_BY } from 'reducers/sort-by';
 
 export const getAllPostsAndComments = () => (dispatch) => {
   Api.getPosts()
     .then(posts => {
       dispatch(getAllPostsSuccess(posts));
+      dispatch(sortPosts(DEFAULT_SORT_BY.posts.type, DEFAULT_SORT_BY.posts.order))
       posts.map(({ id }) => dispatch(getAllComments(id)));
     })
 }

@@ -1,6 +1,6 @@
 import { SET_SORT_BY } from 'actions/constants';
 
-const DEFAULT_SORT_BY = {
+export const DEFAULT_SORT_BY = {
   posts: {
     type: 'voteScore',
     order: 'descending'

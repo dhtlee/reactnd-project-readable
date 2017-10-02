@@ -1,10 +1,14 @@
 import Api from 'api';
-import { GET_ALL_COMMENTS_SUCCESS, SORT_COMMENTS,
-  UPVOTE_COMMENT_SUCCESS, DOWNVOTE_COMMENT_SUCCESS } from 'actions/constants';
+import {
+  GET_ALL_COMMENTS_SUCCESS, SORT_COMMENTS,
+  UPVOTE_COMMENT_SUCCESS, DOWNVOTE_COMMENT_SUCCESS
+} from 'actions/constants';
+import { DEFAULT_SORT_BY } from 'reducers/sort-by';
 
 export const getAllComments = (postId) => (dispatch) => {
   Api.getComments(postId)
-    .then(comments => dispatch(getAllCommentsSuccess(comments)));
+    .then(comments => dispatch(getAllCommentsSuccess(comments)))
+    .then(() => dispatch(sortComments(DEFAULT_SORT_BY.posts.type, DEFAULT_SORT_BY.posts.order)));
 }
 
 const getAllCommentsSuccess = (comments) => {

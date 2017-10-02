@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { getAllPostsAndComments } from 'actions/posts';
 import { getAllCategories } from 'actions/categories';
+import { getAllPostsAndComments } from 'actions/posts';
 import Header from './header';
 import Content from './content';
 import Sidebar from './sidebar';
