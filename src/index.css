@@ -91,6 +91,12 @@ html, body, select, #root {
   flex-flow: column;
 }
 
+.post-submenu {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10%;
+}
+
 .content-container-post {
   display: flex;
   align-items: baseline;

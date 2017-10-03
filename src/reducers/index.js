@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
 
 import categories from './categories';
 import comments from './comments';
@@ -9,5 +10,6 @@ export default combineReducers({
   categories,
   posts,
   comments,
-  sortBy
+  sortBy,
+  form
 });
