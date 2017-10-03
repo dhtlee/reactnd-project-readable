@@ -151,3 +151,44 @@ html, body, select, #root {
 .content-control-item {
   margin-right: 12px;
 }
+
+.form-field {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin: 10px;
+  align-items: center;
+}
+
+.form-field label, button {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+  min-width: 80px;
+  text-align: right;
+}
+
+.form-field button {
+  padding: 10px 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.form-field-input {
+  display: flex;
+  flex-grow: 1;
+  flex-flow: column nowrap;
+  position: relative;
+  max-width: 500px;
+}
+
+.form-field-input select, input, textarea { 
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.47);
+  background: white;
+}
+
+.form-field-input select {
+  max-width: 100px;
+}
