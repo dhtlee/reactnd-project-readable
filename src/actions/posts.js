@@ -1,5 +1,5 @@
 import Api from 'api';
-import { getAllComments } from 'actions/comments';
+import { getAllComments, sortComments } from 'actions/comments';
 import {
   GET_ALL_POSTS_SUCCESS, SORT_POSTS, UPVOTE_POST_SUCCESS, DOWNVOTE_POST_SUCCESS
 } from 'actions/constants';
@@ -10,7 +10,8 @@ export const getAllPostsAndComments = () => (dispatch) => {
     .then(posts => {
       dispatch(getAllPostsSuccess(posts));
       dispatch(sortPosts(DEFAULT_SORT_BY.posts.type, DEFAULT_SORT_BY.posts.order))
-      posts.map(({ id }) => dispatch(getAllComments(id)));
+      const getAllCommentsPromise = posts.map(({ id }) => dispatch(getAllComments(id)));
+      Promise.all(getAllCommentsPromise).then(() => dispatch(sortComments('voteScore', 'descending')));
     })
 }
 

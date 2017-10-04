@@ -6,9 +6,8 @@ import {
 import { DEFAULT_SORT_BY } from 'reducers/sort-by';
 
 export const getAllComments = (postId) => (dispatch) => {
-  Api.getComments(postId)
-    .then(comments => dispatch(getAllCommentsSuccess(comments)))
-    .then(() => dispatch(sortComments(DEFAULT_SORT_BY.posts.type, DEFAULT_SORT_BY.posts.order)));
+  return Api.getComments(postId)
+    .then(comments => dispatch(getAllCommentsSuccess(comments)));
 }
 
 const getAllCommentsSuccess = (comments) => {
