@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PostForm from './post-form';
 import PostList from './post-list';
 import PostDetail from './post-detail';
+import { createPost } from 'actions/posts';
 
 class Content extends Component {
   filterPostByCategory(posts, category) {
@@ -13,10 +14,6 @@ class Content extends Component {
 
   filterPostById(posts, id) {
     return posts.filter(post => post.id === id);
-  }
-
-  submit(values) {
-    console.log(values);
   }
 
   render() {
@@ -33,7 +30,11 @@ class Content extends Component {
           <Route
             path='/posts/new'
             render={() => (
-              <PostForm onSubmit={this.submit} />
+              <PostForm onSubmit={(data) => {
+                this.props.createPost(data);
+                this.props.history.push('/');
+                }}
+              />
             )}
           />
           <Route 
@@ -62,6 +63,10 @@ const mapStateToProps = ({ posts, comments }) => ({
     ...post,
     comments: comments.filter(comment => comment.parentId === post.id)
   }))
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  createPost: (data) => dispatch(createPost(data))
 })
 
-export default withRouter(connect(mapStateToProps)(Content));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));

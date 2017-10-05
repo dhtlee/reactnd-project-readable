@@ -1,6 +1,7 @@
 import { sortContent } from 'utils/helper';
 import {
   GET_ALL_POSTS_SUCCESS,
+  CREATE_POST_SUCCESS,
   SORT_POSTS,
   UPVOTE_POST_SUCCESS,
   DOWNVOTE_POST_SUCCESS
@@ -10,6 +11,11 @@ const posts = (state = [], action) => {
   switch(action.type) {
     case GET_ALL_POSTS_SUCCESS:
       return action.posts;
+    case CREATE_POST_SUCCESS:
+      return [
+        ...state,
+        action.post
+      ]
     case SORT_POSTS:
       const newState = [ ...state ];
       sortContent[action.order](newState, action.sortByType);

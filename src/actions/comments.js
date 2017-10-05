@@ -3,7 +3,6 @@ import {
   GET_ALL_COMMENTS_SUCCESS, SORT_COMMENTS,
   UPVOTE_COMMENT_SUCCESS, DOWNVOTE_COMMENT_SUCCESS
 } from 'actions/constants';
-import { DEFAULT_SORT_BY } from 'reducers/sort-by';
 
 export const getAllComments = (postId) => (dispatch) => {
   return Api.getComments(postId)
