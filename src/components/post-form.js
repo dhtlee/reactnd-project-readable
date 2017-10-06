@@ -13,10 +13,10 @@ const PostForm = (props) => {
         <label>Title</label>
         <div className='form-field-input'>
           <Field
-            name="title"
-            component="input"
-            type="text"
-            placeholder="Super duper awesome title"
+            name='title'
+            component='input'
+            type='text'
+            placeholder='Super duper awesome title'
           />
         </div>
       </div>
@@ -24,17 +24,17 @@ const PostForm = (props) => {
         <label>Author</label>
         <div className='form-field-input'>
           <Field
-            name="author"
-            component="input"
-            type="text"
-            placeholder="Name that is going to be famous!"
+            name='author'
+            component='input'
+            type='text'
+            placeholder='Name that is going to be famous!'
           />
         </div>
       </div>
       <div className='form-field'>
         <label>Category</label>
         <div className='form-field-input'>
-          <Field name="category" component="select">
+          <Field name='category' component='select'>
             {categories.map((category, index) => 
               <option key={index} value={category.name}>{capitalizeFirst(category.name)}</option>
             )}
@@ -45,17 +45,17 @@ const PostForm = (props) => {
         <label>Body</label>
         <div className='form-field-input'>
           <Field
-            name="body"
-            component="textarea"
-            placeholder="Write your life story here"
+            name='body'
+            component='textarea'
+            placeholder='Write your life story here'
           />
         </div>
       </div>
       <div className='form-field'>
-        <button type="button" onClick={() => history.goBack()}>
+        <button type='button' onClick={() => history.goBack()}>
           Back
         </button>
-        <button type="submit" disabled={pristine || submitting}>
+        <button type='submit' disabled={pristine || submitting}>
           Submit
         </button>
       </div>

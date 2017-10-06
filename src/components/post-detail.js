@@ -28,7 +28,7 @@ const PostDetail = (props) => {
         </div>
       </div>
       <LineSeparator />
-      <CommentList comments={comments} />
+      <CommentList postId={id} comments={comments} />
     </div>
   )
 } 

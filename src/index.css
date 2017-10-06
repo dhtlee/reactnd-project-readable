@@ -42,6 +42,12 @@ html, body, select, #root {
   border-bottom: 1px solid #DBDBDB;
 }
 
+.fake-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .header {
   grid-area: header;
 }
@@ -150,6 +156,10 @@ html, body, select, #root {
 
 .content-control-item {
   margin-right: 12px;
+}
+
+form {
+  flex-grow: 1
 }
 
 .form-field {

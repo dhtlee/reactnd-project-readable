@@ -1,7 +1,10 @@
 import Api from 'api';
 import {
-  GET_ALL_COMMENTS_SUCCESS, SORT_COMMENTS,
-  UPVOTE_COMMENT_SUCCESS, DOWNVOTE_COMMENT_SUCCESS
+  GET_ALL_COMMENTS_SUCCESS,
+  CREATE_COMMENT_SUCCESS,
+  SORT_COMMENTS,
+  UPVOTE_COMMENT_SUCCESS,
+  DOWNVOTE_COMMENT_SUCCESS
 } from 'actions/constants';
 
 export const getAllComments = (postId) => (dispatch) => {
@@ -13,6 +16,18 @@ const getAllCommentsSuccess = (comments) => {
   return {
     type: GET_ALL_COMMENTS_SUCCESS,
     comments
+  }
+}
+
+export const createComment = (parentId, comment) => (dispatch) => {
+  Api.createComment(parentId, comment)
+    .then((comment) => dispatch(createCommentSuccess(comment)));
+}
+
+const createCommentSuccess = (comment) => {
+  return {
+    type: CREATE_COMMENT_SUCCESS,
+    comment
   }
 }
 
