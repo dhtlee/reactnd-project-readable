@@ -1,11 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
+import { createComment } from 'actions/comments';
+
 const CommentForm = (props) => {
-  const { hideForm, handleSubmit, pristine, submitting } = props;
+  const { postId, hideForm, handleSubmit, pristine, submitting, createComment } = props;
   return (
     <div className='content-container-comment'>
-      <form className='form' onSubmit={handleSubmit}>
+      <form className='form' onSubmit={handleSubmit(data => {
+          console.log(postId, data);
+          createComment(postId, data);
+          hideForm();
+        })}>
         <div className='form-field'>
           <label>Author</label>
           <div className='form-field-input'>
@@ -40,6 +47,10 @@ const CommentForm = (props) => {
   )
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  createComment: (postId, data) => dispatch(createComment(postId, data))
+})
+
 export default reduxForm({
   form: 'comment'
-})(CommentForm);
+})(connect(undefined, mapDispatchToProps)(CommentForm));

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import { CONTENT_COMMENTS } from 'actions/constants';
 import Sorter from './sorter';
 import Comment from './comment';
 import CommentForm from './comment-form';
-import { createComment } from 'actions/comments';
 
 class CommentList extends Component {
   constructor (props) {
@@ -26,7 +24,7 @@ class CommentList extends Component {
   }
 
   render() {
-    const { postId, comments, createComment } = this.props;
+    const { postId, comments } = this.props;
     const { displayForm } = this.state;
     return (
       <div>
@@ -43,10 +41,7 @@ class CommentList extends Component {
         {displayForm && 
         <CommentForm 
           hideForm={this.hideNewCommentForm}
-          onSubmit={(data) => {
-            createComment(postId, data);
-            this.hideNewCommentForm();
-          }}
+          postId={postId}
         />}
         {comments.length === 0 ? 
           <p><em>Darn, looks like nobody cares about this post!</em></p>
@@ -58,8 +53,4 @@ class CommentList extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  createComment: (postId, data) => dispatch(createComment(postId, data))
-})
-
-export default connect(undefined, mapDispatchToProps)(CommentList);
+export default CommentList;

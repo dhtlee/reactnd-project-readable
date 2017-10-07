@@ -4,11 +4,15 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 import { capitalizeFirst } from 'utils/helper';
+import { createPost } from 'actions/posts';
 
 const PostForm = (props) => {
-  const { handleSubmit, pristine, submitting, categories, history } = props;
+  const { handleSubmit, pristine, submitting, categories, createPost, history } = props;
   return (
-    <form className='form' onSubmit={handleSubmit}>
+    <form className='form' onSubmit={handleSubmit(data => {
+        createPost(data);
+        history.push('/');
+      })}>
       <div className='form-field'>
         <label>Title</label>
         <div className='form-field-input'>
@@ -67,6 +71,10 @@ const mapStateToProps = ({ categories }) => ({
   categories
 })
 
+const mapDispatchToProps = (dispatch) => ({
+  createPost: (data) => dispatch(createPost(data))
+})
+
 export default reduxForm({ 
   form: 'post'
-})(withRouter(connect(mapStateToProps)(PostForm)));
+})(withRouter(connect(mapStateToProps, mapDispatchToProps)(PostForm)));
