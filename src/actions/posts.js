@@ -4,6 +4,7 @@ import {
   GET_ALL_POSTS_SUCCESS,
   CREATE_POST_SUCCESS,
   EDIT_POST_SUCCESS,
+  DELETE_POST_SUCCESS,
   SORT_POSTS,
   UPVOTE_POST_SUCCESS,
   DOWNVOTE_POST_SUCCESS
@@ -42,13 +43,25 @@ const createPostSuccess = (post) => {
 
 export const editPost = (id, data) => (dispatch) => {
   Api.editPost(id, data)
-    .then((data) => dispatch(editPostSuccess(data)));
+    .then((post) => dispatch(editPostSuccess(post)));
 }
 
 const editPostSuccess = (post) => {
   return {
     type: EDIT_POST_SUCCESS,
     post
+  }
+}
+
+export const deletePost = (id) => (dispatch) => {
+  Api.deletePost(id)
+    .then(() => dispatch(deletePostSuccess(id)));
+}
+
+const deletePostSuccess = (id) => {
+  return {
+    type: DELETE_POST_SUCCESS,
+    id
   }
 }
 

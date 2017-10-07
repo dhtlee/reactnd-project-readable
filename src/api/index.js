@@ -1,5 +1,5 @@
 import { getCategories } from './categories';
-import { getPosts, createPost, editPost, upvotePost, downvotePost } from './posts';
+import { getPosts, createPost, editPost, deletePost, upvotePost, downvotePost } from './posts';
 import { getComments, createComment, upvoteComment, downvoteComment } from './comments';
 
 export default {
@@ -7,6 +7,7 @@ export default {
   getPosts,
   createPost,
   editPost,
+  deletePost,
   upvotePost,
   downvotePost,
   getComments,

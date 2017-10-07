@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { upvotePost, downvotePost } from 'actions/posts';
+import { deletePost, upvotePost, downvotePost } from 'actions/posts';
 import LineSeparator from './line-separator';
 import Stats from './stats';
 import ContentControl from './content-control';
@@ -10,7 +10,7 @@ import { formatDate } from 'utils/helper';
 
 const PostDetail = (props) => {
   const { id, title, body, author, timestamp, voteScore, comments = [],
-    onUpvotePost, onDownvotePost } = props;
+    onUpvotePost, onDownvotePost, deletePost } = props;
   
   return (
     <div>
@@ -28,6 +28,7 @@ const PostDetail = (props) => {
             type='posts'
             id={id}
             commentsCount={comments.length}
+            onDelete={id => deletePost(id)}
           />
         </div>
       </div>
@@ -35,11 +36,12 @@ const PostDetail = (props) => {
       <CommentList postId={id} comments={comments} />
     </div>
   )
-} 
+}
 
 const mapDispatchToProps = (dispatch) => ({
   onUpvotePost: (id) => dispatch(upvotePost(id)),
-  onDownvotePost: (id) => dispatch(downvotePost(id))
+  onDownvotePost: (id) => dispatch(downvotePost(id)),
+  deletePost: (id) => dispatch(deletePost(id))
 })
 
 export default connect(undefined, mapDispatchToProps)(PostDetail);

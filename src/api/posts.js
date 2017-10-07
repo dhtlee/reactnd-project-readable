@@ -32,6 +32,14 @@ export const editPost = (id, data) => {
     .then(res => res.json());
 }
 
+export const deletePost = (id) => {
+  return fetch(`${BASE_URL}/posts/${id}`,
+    { 
+      method: 'DELETE',
+      headers: HEADERS,
+    });
+}
+
 const votePost = (option) => (id) => {
   return fetch(`${BASE_URL}/posts/${id}`,
   {

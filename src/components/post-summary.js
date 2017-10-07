@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { upvotePost, downvotePost } from 'actions/posts';
+import { deletePost, upvotePost, downvotePost } from 'actions/posts';
 import Stats from './stats';
 import ContentControl from './content-control';
 import { formatDate } from 'utils/helper';
 
-const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, onUpvotePost, onDownvotePost }) => (
+const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, onUpvotePost, onDownvotePost, deletePost }) => (
   <div className='content-container-post'>
     <Stats
       onUpvote={() => onUpvotePost(id)}
@@ -23,6 +23,7 @@ const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, o
         type='posts'
         id={id}
         commentsCount={comments.length}
+        onDelete={id => deletePost(id)}
       />
     </div>
   </div>
@@ -30,7 +31,8 @@ const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, o
 
 const mapDispatchToProps = (dispatch) => ({
   onUpvotePost: (id) => dispatch(upvotePost(id)),
-  onDownvotePost: (id) => dispatch(downvotePost(id))
+  onDownvotePost: (id) => dispatch(downvotePost(id)),
+  deletePost: (id) => dispatch(deletePost(id))
 })
 
 export default connect(undefined, mapDispatchToProps)(PostSummary);

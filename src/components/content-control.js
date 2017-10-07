@@ -6,7 +6,7 @@ import FaTrashO from 'react-icons/lib/fa/trash-o';
 
 import WhiteSpace from './white-space';
 
-const ContentControl = ({ type, id, commentsCount, match }) => (
+const ContentControl = ({ type, id, commentsCount, history, match, onDelete }) => (
   <div className='content-control'>
     { commentsCount !== undefined && 
       <div className='content-control-item'>
@@ -25,7 +25,13 @@ const ContentControl = ({ type, id, commentsCount, match }) => (
     <div className='content-control-item'>
       <FaTrashO />
       <WhiteSpace />
-      <a>Delete</a>
+      <Link to='/' onClick={(event) => {
+        event.preventDefault();
+        onDelete(id);
+        history.push('/');
+      }}>
+        <span>Delete</span>
+      </Link>
     </div>
   </div>
 )

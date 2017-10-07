@@ -55,7 +55,7 @@ class Content extends Component {
 };
 
 const mapStateToProps = ({ posts, comments }) => ({
-  posts: posts.map((post) => ({
+  posts: posts.filter(post => !post.deleted).map((post) => ({
     ...post,
     comments: comments.filter(comment => comment.parentId === post.id)
   }))
