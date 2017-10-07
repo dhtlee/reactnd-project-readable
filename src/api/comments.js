@@ -21,6 +21,20 @@ export const createComment = (parentId, data) => {
     .then(res => res.json());
 }
 
+export const editComment = (id, data) => {
+  return fetch(`${BASE_URL}/comments/${id}`,
+    {
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify({
+        ...data,
+        timestamp: Date.now()
+      })
+      
+    })
+    .then(res => res.json());
+}
+
 export const deleteComment = (id) => {
   return fetch(`${BASE_URL}/comments/${id}`,
     { 

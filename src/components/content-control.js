@@ -23,7 +23,7 @@ const ContentControl = ({ type, id, commentsCount, history, match, deletePost, d
     {type === 'posts' ? 
       <EditLinkPost id={id} /> 
       :
-      <EditLinkComment id={id} showForm={showForm} />
+      <EditLinkComment showForm={showForm} />
     }
     <div className='content-control-item'>
       <FaTrashO />

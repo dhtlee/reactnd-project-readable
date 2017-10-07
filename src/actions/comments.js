@@ -2,6 +2,7 @@ import Api from 'api';
 import {
   GET_ALL_COMMENTS_SUCCESS,
   CREATE_COMMENT_SUCCESS,
+  EDIT_COMMENT_SUCCESS,
   DELETE_COMMENT_SUCCESS,
   SORT_COMMENTS,
   UPVOTE_COMMENT_SUCCESS,
@@ -28,6 +29,18 @@ export const createComment = (parentId, comment) => (dispatch) => {
 const createCommentSuccess = (comment) => {
   return {
     type: CREATE_COMMENT_SUCCESS,
+    comment
+  }
+}
+
+export const editComment = (id, comment) => (dispatch) => {
+  Api.editComment(id, comment)
+    .then((comment) => dispatch(editCommentSuccess(comment)));
+}
+
+const editCommentSuccess = (comment) => {
+  return {
+    type: EDIT_COMMENT_SUCCESS,
     comment
   }
 }

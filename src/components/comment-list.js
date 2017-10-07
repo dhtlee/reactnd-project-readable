@@ -47,6 +47,7 @@ class CommentList extends Component {
         <CommentForm
           initialValues={commentToEdit}
           hideForm={this.hideCommentForm}
+          id={commentToEdit && commentToEdit.id}
           postId={postId}
         />}
         {comments.length === 0 ? 
