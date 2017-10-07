@@ -7,7 +7,7 @@ import ContentControl from './content-control';
 import { formatDate } from 'utils/helper';
 
 const Comment = ({ id, body, author, timestamp, voteScore,
-  onUpvoteComment, onDownvoteComment }) => {
+  onUpvoteComment, onDownvoteComment, onDelete }) => {
   return (
     <div className='content-container-comment'>
       <Stats
@@ -18,7 +18,11 @@ const Comment = ({ id, body, author, timestamp, voteScore,
       <div className='comment-detail'>
         <div className='comment-body'>{body}</div>
         <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
-        <ContentControl />
+        <ContentControl 
+          id={id}
+          type='comments'
+          onDelete={onDelete}
+        />
       </div>
     </div>
   )

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { CONTENT_COMMENTS } from 'actions/constants';
 import Sorter from './sorter';
 import Comment from './comment';
 import CommentForm from './comment-form';
+import { deleteComment } from 'actions/comments';
 
 class CommentList extends Component {
   constructor (props) {
@@ -24,7 +26,7 @@ class CommentList extends Component {
   }
 
   render() {
-    const { postId, comments } = this.props;
+    const { postId, comments, deleteComment } = this.props;
     const { displayForm } = this.state;
     return (
       <div>
@@ -46,11 +48,20 @@ class CommentList extends Component {
         {comments.length === 0 ? 
           <p><em>Darn, looks like nobody cares about this post!</em></p>
           :
-          comments.map(comment => <Comment key={comment.id} {...comment} />)
+          comments.map(comment => 
+            <Comment
+              key={comment.id}
+              onDelete={id => deleteComment(id)}
+              {...comment} 
+            />)
         }
       </div>
     )
   }
 }
 
-export default CommentList;
+const mapDispatchToProps = (dispatch) => ({
+  deleteComment: (id) => dispatch(deleteComment(id))
+})
+
+export default connect(undefined, mapDispatchToProps)(CommentList);

@@ -5,6 +5,7 @@ import FaEdit from 'react-icons/lib/fa/edit';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
 
 import WhiteSpace from './white-space';
+import { CONTENT_POSTS } from 'actions/constants';
 
 const ContentControl = ({ type, id, commentsCount, history, match, onDelete }) => (
   <div className='content-control'>
@@ -28,7 +29,9 @@ const ContentControl = ({ type, id, commentsCount, history, match, onDelete }) =
       <Link to='/' onClick={(event) => {
         event.preventDefault();
         onDelete(id);
-        history.push('/');
+        if (type === CONTENT_POSTS) {
+          history.push('/');
+        }
       }}>
         <span>Delete</span>
       </Link>

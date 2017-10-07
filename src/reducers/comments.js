@@ -2,6 +2,7 @@ import { sortContent } from 'utils/helper';
 import {
   GET_ALL_COMMENTS_SUCCESS,
   CREATE_COMMENT_SUCCESS,
+  DELETE_COMMENT_SUCCESS,
   SORT_COMMENTS,
   UPVOTE_COMMENT_SUCCESS,
   DOWNVOTE_COMMENT_SUCCESS
@@ -18,7 +19,11 @@ const comments = (state = [], action) => {
       return [
         ...state,
         action.comment
-      ]
+      ];
+    case DELETE_COMMENT_SUCCESS:
+      return [
+        ...state.filter(comment => comment.id !== action.id)
+      ];
     case SORT_COMMENTS:
       const newState = [ ...state ];
       sortContent[action.order](newState, action.sortByType);

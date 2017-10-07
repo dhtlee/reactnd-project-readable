@@ -21,6 +21,14 @@ export const createComment = (parentId, data) => {
     .then(res => res.json());
 }
 
+export const deleteComment = (id) => {
+  return fetch(`${BASE_URL}/comments/${id}`,
+    { 
+      method: 'DELETE',
+      headers: HEADERS,
+    });
+}
+
 const voteComment = (option) => (commentId) => {
   return fetch(`${BASE_URL}/comments/${commentId}`,
   {
