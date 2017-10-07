@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { deletePost, upvotePost, downvotePost } from 'actions/posts';
 import Stats from './stats';
-import ContentControl from './content-control';
+import ContentControlPost from './content-control-post';
 import { formatDate } from 'utils/helper';
 
 const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, onUpvotePost, onDownvotePost, deletePost }) => (
@@ -19,12 +19,7 @@ const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, o
         <h2 className='heading'>{title}</h2>
       </Link>
       <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
-      <ContentControl
-        type='posts'
-        id={id}
-        commentsCount={comments.length}
-        onDelete={id => deletePost(id)}
-      />
+      <ContentControlPost id={id} commentsCount={comments.length} />
     </div>
   </div>
 )

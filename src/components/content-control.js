@@ -1,13 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import FaCommentO from 'react-icons/lib/fa/comment-o';
-import FaEdit from 'react-icons/lib/fa/edit';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
 
+import EditLinkPost from './edit-link-post';
+import EditLinkComment from './edit-link-comment';
+import { deletePost } from 'actions/posts';
+import { deleteComment } from 'actions/comments';
 import WhiteSpace from './white-space';
-import { CONTENT_POSTS } from 'actions/constants';
+import { CONTENT_POSTS, CONTENT_COMMENTS } from 'actions/constants';
 
-const ContentControl = ({ type, id, commentsCount, history, match, onDelete }) => (
+const ContentControl = ({ type, id, commentsCount, history, match, deletePost, deleteComment, showForm }) => (
   <div className='content-control'>
     { commentsCount !== undefined && 
       <div className='content-control-item'>
@@ -16,21 +20,21 @@ const ContentControl = ({ type, id, commentsCount, history, match, onDelete }) =
         <span>{commentsCount} comments</span>
       </div>
     }
-    <div className='content-control-item'>
-      <FaEdit />
-      <WhiteSpace />
-      <Link to={`/${type}/${id}/edit`}>
-        <span>Edit</span>
-      </Link>
-    </div>
+    {type === 'posts' ? 
+      <EditLinkPost id={id} /> 
+      :
+      <EditLinkComment id={id} showForm={showForm} />
+    }
     <div className='content-control-item'>
       <FaTrashO />
       <WhiteSpace />
       <Link to='/' onClick={(event) => {
         event.preventDefault();
-        onDelete(id);
         if (type === CONTENT_POSTS) {
+          deletePost(id);
           history.push('/');
+        } else if (type === CONTENT_COMMENTS) {
+          deleteComment(id);
         }
       }}>
         <span>Delete</span>
@@ -39,4 +43,9 @@ const ContentControl = ({ type, id, commentsCount, history, match, onDelete }) =
   </div>
 )
 
-export default withRouter(ContentControl);
+const mapDispatchToProps = (dispatch) => ({
+  deletePost: (id) => dispatch(deletePost(id)),
+  deleteComment: (id) => dispatch(deleteComment(id))
+})
+
+export default withRouter(connect(undefined, mapDispatchToProps)(ContentControl));

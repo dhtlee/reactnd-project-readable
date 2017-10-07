@@ -51,5 +51,6 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default reduxForm({
-  form: 'comment'
+  form: 'comment',
+  enableReinitialize: true
 })(connect(undefined, mapDispatchToProps)(CommentForm));

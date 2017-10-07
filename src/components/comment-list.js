@@ -1,33 +1,36 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import { CONTENT_COMMENTS } from 'actions/constants';
 import Sorter from './sorter';
 import Comment from './comment';
 import CommentForm from './comment-form';
-import { deleteComment } from 'actions/comments';
 
 class CommentList extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      displayForm: false
+      displayForm: false,
+      commentToEdit: {}
     }
-    this.showNewCommentForm = this.showNewCommentForm.bind(this);
-    this.hideNewCommentForm = this.hideNewCommentForm.bind(this);
+    this.showCommentForm = this.showCommentForm.bind(this);
+    this.hideCommentForm = this.hideCommentForm.bind(this);
   }
 
-  showNewCommentForm() {
-    this.setState({ displayForm: true });
+  filterCommentById(comments, id) {
+    return comments.filter(comment => comment.id === id);
   }
 
-  hideNewCommentForm() {
-    this.setState({ displayForm: false });
+  showCommentForm(comment) {
+    this.setState({ displayForm: true, commentToEdit: comment });
+  }
+
+  hideCommentForm() {
+    this.setState({ displayForm: false, commentToEdit: {} });
   }
 
   render() {
-    const { postId, comments, deleteComment } = this.props;
-    const { displayForm } = this.state;
+    const { postId, comments } = this.props;
+    const { displayForm, commentToEdit } = this.state;
     return (
       <div>
         <div className='post-comments'>
@@ -36,13 +39,14 @@ class CommentList extends Component {
         <div className='post-submenu'>
           <a className='fake-link' onClick={(event) => {
             event.preventDefault();
-            this.showNewCommentForm();
+            this.showCommentForm();
             }}>New Comment</a>
           <Sorter content={CONTENT_COMMENTS} />
         </div>
         {displayForm && 
-        <CommentForm 
-          hideForm={this.hideNewCommentForm}
+        <CommentForm
+          initialValues={commentToEdit}
+          hideForm={this.hideCommentForm}
           postId={postId}
         />}
         {comments.length === 0 ? 
@@ -51,8 +55,11 @@ class CommentList extends Component {
           comments.map(comment => 
             <Comment
               key={comment.id}
-              onDelete={id => deleteComment(id)}
-              {...comment} 
+              showEditCommentForm={(event) => {
+                event.preventDefault();
+                this.showCommentForm(comment)
+                }}
+              {...comment}
             />)
         }
       </div>
@@ -60,8 +67,4 @@ class CommentList extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  deleteComment: (id) => dispatch(deleteComment(id))
-})
-
-export default connect(undefined, mapDispatchToProps)(CommentList);
+export default CommentList;
