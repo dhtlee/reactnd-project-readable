@@ -19,7 +19,11 @@ const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, o
         <h2 className='heading'>{title}</h2>
       </Link>
       <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
-      <ContentControl commentsCount={comments.length} />
+      <ContentControl
+        type='posts'
+        id={id}
+        commentsCount={comments.length}
+      />
     </div>
   </div>
 )

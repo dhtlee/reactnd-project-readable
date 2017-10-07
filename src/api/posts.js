@@ -20,8 +20,20 @@ export const createPost = (data) => {
     .then(res => res.json());
 }
 
-const votePost = (option) => (postId) => {
-  return fetch(`${BASE_URL}/posts/${postId}`,
+export const editPost = (id, data) => {
+  return fetch(`${BASE_URL}/posts/${id}`,
+    { 
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify({
+        ...data
+      })
+    })
+    .then(res => res.json());
+}
+
+const votePost = (option) => (id) => {
+  return fetch(`${BASE_URL}/posts/${id}`,
   {
     method: 'POST',
     headers: HEADERS,

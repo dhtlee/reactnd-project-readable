@@ -12,7 +12,7 @@ class Content extends Component {
   }
 
   filterPostById(posts, id) {
-    return posts.filter(post => post.id === id);
+    return posts.filter(post => post.id === id)[0];
   }
 
   render() {
@@ -26,20 +26,23 @@ class Content extends Component {
               <PostList posts={posts} />
             )}
           />
-          <Route
+          <Route exact
             path='/posts/new'
             component={PostForm}
           />
-          <Route 
-            path='/posts/:id' 
-            render={({ match }) => {
-              const post = this.filterPostById(posts, match.params.id)[0];
-              return (
-                <PostDetail {...post} />
-              )
-            }}
+          <Route
+            path='/posts/:id/edit'
+            render={({ match }) => (
+              <PostForm initialValues={this.filterPostById(posts, match.params.id)} />
+            )}
           />
-          <Route 
+          <Route exact
+            path='/posts/:id' 
+            render={({ match }) => (
+              <PostDetail {...this.filterPostById(posts, match.params.id)} />
+            )}
+          />
+          <Route exact
             path='/categories/:name'
             render={({ match }) => (
               <PostList posts={this.filterPostByCategory(posts, match.params.name)} />

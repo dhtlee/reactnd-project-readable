@@ -24,7 +24,11 @@ const PostDetail = (props) => {
           <h2 className='heading'>{title}</h2>
           <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
           <p className='post-body'>{body}</p>
-          <ContentControl commentsCount={comments.length}/>
+          <ContentControl 
+            type='posts'
+            id={id}
+            commentsCount={comments.length}
+          />
         </div>
       </div>
       <LineSeparator />

@@ -4,14 +4,22 @@ import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 import { capitalizeFirst } from 'utils/helper';
-import { createPost } from 'actions/posts';
+import { createPost, editPost } from 'actions/posts';
 
 const PostForm = (props) => {
-  const { handleSubmit, pristine, submitting, categories, createPost, history } = props;
+  const { handleSubmit, pristine, submitting, categories,
+    createPost, editPost, history, match } = props;
+  const isEdit = match.url.indexOf('edit') !== -1;
   return (
     <form className='form' onSubmit={handleSubmit(data => {
-        createPost(data);
-        history.push('/');
+        if(isEdit) {
+          const { title, body, category, author } = data;
+          data = { title, body, category, author };
+          editPost(match.params.id, data);
+        } else {
+          createPost(data);
+        }
+        history.goBack();
       })}>
       <div className='form-field'>
         <label>Title</label>
@@ -72,7 +80,8 @@ const mapStateToProps = ({ categories }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  createPost: (data) => dispatch(createPost(data))
+  createPost: (data) => dispatch(createPost(data)),
+  editPost: (id, data) => dispatch(editPost(id, data))
 })
 
 export default reduxForm({ 

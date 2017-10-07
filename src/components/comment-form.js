@@ -9,7 +9,6 @@ const CommentForm = (props) => {
   return (
     <div className='content-container-comment'>
       <form className='form' onSubmit={handleSubmit(data => {
-          console.log(postId, data);
           createComment(postId, data);
           hideForm();
         })}>

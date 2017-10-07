@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import FaCommentO from 'react-icons/lib/fa/comment-o';
 import FaEdit from 'react-icons/lib/fa/edit';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
 
 import WhiteSpace from './white-space';
 
-const ContentControl = ({ commentsCount }) => (
+const ContentControl = ({ type, id, commentsCount, match }) => (
   <div className='content-control'>
     { commentsCount !== undefined && 
       <div className='content-control-item'>
@@ -17,7 +18,9 @@ const ContentControl = ({ commentsCount }) => (
     <div className='content-control-item'>
       <FaEdit />
       <WhiteSpace />
-      <a>Edit</a>
+      <Link to={`/${type}/${id}/edit`}>
+        <span>Edit</span>
+      </Link>
     </div>
     <div className='content-control-item'>
       <FaTrashO />
@@ -27,4 +30,4 @@ const ContentControl = ({ commentsCount }) => (
   </div>
 )
 
-export default ContentControl;
+export default withRouter(ContentControl);

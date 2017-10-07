@@ -3,6 +3,7 @@ import { getAllComments, sortComments } from 'actions/comments';
 import {
   GET_ALL_POSTS_SUCCESS,
   CREATE_POST_SUCCESS,
+  EDIT_POST_SUCCESS,
   SORT_POSTS,
   UPVOTE_POST_SUCCESS,
   DOWNVOTE_POST_SUCCESS
@@ -32,9 +33,21 @@ export const createPost = (data) => (dispatch) => {
     .then(() => dispatch(sortPosts(DEFAULT_SORT_BY.posts.type, DEFAULT_SORT_BY.posts.order)));
 }
 
-export const createPostSuccess = (post) => {
+const createPostSuccess = (post) => {
   return {
     type: CREATE_POST_SUCCESS,
+    post
+  }
+}
+
+export const editPost = (id, data) => (dispatch) => {
+  Api.editPost(id, data)
+    .then((data) => dispatch(editPostSuccess(data)));
+}
+
+const editPostSuccess = (post) => {
+  return {
+    type: EDIT_POST_SUCCESS,
     post
   }
 }
