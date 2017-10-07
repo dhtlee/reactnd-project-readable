@@ -18,7 +18,7 @@ const Comment = ({ id, body, author, timestamp, voteScore,
       <div className='comment-detail'>
         <div className='comment-body'>{body}</div>
         <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
-        <ContentControlComment showForm={showEditCommentForm} />
+        <ContentControlComment id={id} showForm={showEditCommentForm} />
       </div>
     </div>
   )
