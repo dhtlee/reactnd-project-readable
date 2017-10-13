@@ -15,7 +15,6 @@ export const getAllPostsAndComments = () => (dispatch) => {
   Api.getPosts()
     .then(posts => {
       dispatch(getAllPostsSuccess(posts));
-      dispatch(sortPosts(DEFAULT_SORT_BY.posts.type, DEFAULT_SORT_BY.posts.order))
       const getAllCommentsPromise = posts.map(({ id }) => dispatch(getAllComments(id)));
       Promise.all(getAllCommentsPromise).then(() => dispatch(sortComments(DEFAULT_SORT_BY.comments.type, DEFAULT_SORT_BY.comments.order)));
     })
@@ -30,8 +29,7 @@ const getAllPostsSuccess = (posts) => {
 
 export const createPost = (data) => (dispatch) => {
   Api.createPost(data)
-    .then(post => dispatch(createPostSuccess(post)))
-    .then(() => dispatch(sortPosts(DEFAULT_SORT_BY.posts.type, DEFAULT_SORT_BY.posts.order)));
+    .then(post => dispatch(createPostSuccess(post)));
 }
 
 const createPostSuccess = (post) => {

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PostForm from './post-form';
 import PostList from './post-list';
 import PostDetail from './post-detail';
+import { getSortedPostsWithComments } from 'selectors';
 
 class Content extends Component {
   filterPostByCategory(posts, category) {
@@ -54,12 +55,8 @@ class Content extends Component {
   }
 };
 
-const mapStateToProps = ({ posts, comments }) => ({
-  posts: posts.filter(post => !post.deleted).map((post) => ({
-    ...post,
-    comments: comments.filter(comment => !comment.deleted)
-      .filter(comment => comment.parentId === post.id)
-  }))
+const mapStateToProps = (state) => ({
+  posts: getSortedPostsWithComments(state)
 });
 
 export default withRouter(connect(mapStateToProps)(Content));
