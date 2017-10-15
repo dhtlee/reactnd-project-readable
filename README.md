@@ -18,9 +18,15 @@ This is the second project for Udacity's React Fundamentals course.
 1. Install dependencies: `npm install`
 1. Start frontend server: `npm start`
 
+## Techniques
+* [Redux form](https://github.com/erikras/redux-form) for create and edit views in [post-form](https://github.com/dhtlee/reactnd-project-readable/blob/master/src/components/post-form.js) and [comment-form](https://github.com/dhtlee/reactnd-project-readable/blob/master/src/components/comment-form.js)
+* [React Router v4](https://github.com/ReactTraining/react-router)
+* [Redux Thunk](https://github.com/gaearon/redux-thunk)
+* Memoized selectors using [reselect](https://github.com/reactjs/reselect) to 'prepare' data to components ([selectors/index.js](https://github.com/dhtlee/reactnd-project-readable/blob/master/src/selectors/index.js))
+* Higher order component example in [post-list.js](https://github.com/dhtlee/reactnd-project-readable/blob/master/src/components/post-list.js)
+
 ## Future improvements
 * Add prop-types
-* Use [reselect](https://github.com/reactjs/reselect) for memoized selector to 'prepare' (sort, filter etc.) data to components
 * DRY up common code between post-detail.js and post-summary.js component
 * DRY up common code between categories.js and quick-links.js component
 * Refactor and introduce hierachy in component folder
