@@ -1,22 +1,19 @@
 import Api from 'api';
-import { getAllComments, sortComments } from 'actions/comments';
+import { getAllComments } from 'actions/comments';
 import {
   GET_ALL_POSTS_SUCCESS,
   CREATE_POST_SUCCESS,
   EDIT_POST_SUCCESS,
   DELETE_POST_SUCCESS,
-  SORT_POSTS,
   UPVOTE_POST_SUCCESS,
   DOWNVOTE_POST_SUCCESS
 } from 'actions/constants';
-import { DEFAULT_SORT_BY } from 'reducers/sort-by';
 
 export const getAllPostsAndComments = () => (dispatch) => {
   Api.getPosts()
     .then(posts => {
       dispatch(getAllPostsSuccess(posts));
-      const getAllCommentsPromise = posts.map(({ id }) => dispatch(getAllComments(id)));
-      Promise.all(getAllCommentsPromise).then(() => dispatch(sortComments(DEFAULT_SORT_BY.comments.type, DEFAULT_SORT_BY.comments.order)));
+      posts.map(({ id }) => dispatch(getAllComments(id)));
     })
 }
 
@@ -60,14 +57,6 @@ const deletePostSuccess = (id) => {
   return {
     type: DELETE_POST_SUCCESS,
     id
-  }
-}
-
-export const sortPosts = (sortByType, order) => {
-  return {
-    type: SORT_POSTS,
-    sortByType,
-    order
   }
 }
 

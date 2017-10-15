@@ -4,7 +4,6 @@ import {
   CREATE_COMMENT_SUCCESS,
   EDIT_COMMENT_SUCCESS,
   DELETE_COMMENT_SUCCESS,
-  SORT_COMMENTS,
   UPVOTE_COMMENT_SUCCESS,
   DOWNVOTE_COMMENT_SUCCESS
 } from 'actions/constants';
@@ -54,14 +53,6 @@ const deleteCommentSuccess = (id) => {
   return {
     type: DELETE_COMMENT_SUCCESS,
     id
-  }
-}
-
-export const sortComments = (sortByType, order) => {
-  return {
-    type: SORT_COMMENTS,
-    sortByType,
-    order
   }
 }
 

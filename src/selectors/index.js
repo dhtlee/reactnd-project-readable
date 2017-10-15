@@ -24,9 +24,26 @@ export const getPostsWithComments = createSelector(
   }
 )
 
-export const getSortedPostsWithComments = createSelector(
-  [ getPostsWithComments, getSortByPosts ], (postsAndComments, sortByPosts) => {
-    sortContent[sortByPosts.order](postsAndComments, sortByPosts.type);
-    return postsAndComments;
+export const getSortedPosts = createSelector(
+  [ getPosts, getSortByPosts ], (posts, sortByPosts) => {
+    sortContent[sortByPosts.order](posts, sortByPosts.type);
+    return posts;
+  }
+)
+
+export const getSortedComments = createSelector(
+  [ getComments, getSortByComments ], (comments, sortByComments) => {
+    sortContent[sortByComments.order](comments, sortByComments.type);
+    return comments;
+  }
+)
+
+export const getSortedPostsWithSortedComments = createSelector(
+  [ getSortedPosts, getSortedComments ], (sortedPosts, sortedComments) => {
+    return sortedPosts.map(post => ({
+      ...post,
+      comments: sortedComments.filter(comment => 
+        (comment.deleted === false && comment.parentId === post.id))
+    }));
   }
 )
