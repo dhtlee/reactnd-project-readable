@@ -4,8 +4,8 @@ import { sortContent } from 'utils/helper';
 
 const getSortByPosts = (state) => state.sortBy.posts;
 const getSortByComments = (state) => state.sortBy.comments;
-const getPosts = (state) => state.posts;
-const getComments = (state) => state.comments;
+const getPosts = (state) => state.posts.filter(post => post.deleted === false);
+const getComments = (state) => state.comments.filter(post => post.deleted === false);
 const getCategories = (state) => state.categories;
 
 export const getPostsByCategory = createSelector(
