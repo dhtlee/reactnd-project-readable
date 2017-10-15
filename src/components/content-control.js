@@ -43,9 +43,7 @@ const ContentControl = ({ type, id, commentsCount, history, match, deletePost, d
   </div>
 )
 
-const mapDispatchToProps = (dispatch) => ({
-  deletePost: (id) => dispatch(deletePost(id)),
-  deleteComment: (id) => dispatch(deleteComment(id))
-})
-
-export default withRouter(connect(undefined, mapDispatchToProps)(ContentControl));
+export default withRouter(connect(
+  undefined,
+  { deletePost, deleteComment }
+)(ContentControl));

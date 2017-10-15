@@ -8,12 +8,7 @@ import {
   UPVOTE_POST_SUCCESS,
   DOWNVOTE_POST_SUCCESS
 } from 'actions/constants';
-
-function wait(delay) {
-  return new Promise((resolve, reject) => {
-      setTimeout(resolve, delay);
-  });
-}
+import { wait } from 'utils/helper';
 
 export const getAllPostsAndComments = () => (dispatch) => {
   wait(2000)

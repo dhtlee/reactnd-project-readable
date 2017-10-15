@@ -52,12 +52,10 @@ const CommentForm = (props) => {
   )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  createComment: (postId, data) => dispatch(createComment(postId, data)),
-  editComment: (id, data) => dispatch(editComment(id, data))
-})
-
 export default reduxForm({
   form: 'comment',
   enableReinitialize: true
-})(connect(undefined, mapDispatchToProps)(CommentForm));
+})(connect(
+  undefined,
+  { createComment, editComment }
+)(CommentForm));

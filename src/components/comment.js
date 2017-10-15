@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import { upvoteComment, downvoteComment } from 'actions/comments';
 import Stats from './stats';
-import ContentControlComment from './content-control-comment';
+import { CONTENT_COMMENTS } from 'actions/constants';
+import ContentControl from './content-control';
 import { formatDate } from 'utils/helper';
 
 const Comment = ({ id, body, author, timestamp, voteScore,
@@ -18,15 +19,13 @@ const Comment = ({ id, body, author, timestamp, voteScore,
       <div className='comment-detail'>
         <div className='comment-body'>{body}</div>
         <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
-        <ContentControlComment id={id} showForm={showEditCommentForm} />
+        <ContentControl type={CONTENT_COMMENTS} id={id} showForm={showEditCommentForm} />
       </div>
     </div>
   )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onUpvoteComment: (id) => dispatch(upvoteComment(id)),
-  onDownvoteComment: (id) => dispatch(downvoteComment(id))
-})
-
-export default connect(undefined, mapDispatchToProps)(Comment);
+export default connect(
+  undefined,
+  { onUpvoteComment: upvoteComment, onDownvoteComment: downvoteComment }
+)(Comment);

@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { deletePost, upvotePost, downvotePost } from 'actions/posts';
+import { upvotePost, downvotePost } from 'actions/posts';
 import Stats from './stats';
-import ContentControlPost from './content-control-post';
+import { CONTENT_POSTS } from 'actions/constants';
+import ContentControl from './content-control';
 import { formatDate } from 'utils/helper';
 
-const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, onUpvotePost, onDownvotePost, deletePost }) => (
+const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, onUpvotePost, onDownvotePost }) => (
   <div className='content-container-post'>
     <Stats
       onUpvote={() => onUpvotePost(id)}
@@ -19,15 +20,12 @@ const PostSummary = ({ id, title, author, timestamp, comments = [], voteScore, o
         <h2 className='heading'>{title}</h2>
       </Link>
       <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
-      <ContentControlPost id={id} commentsCount={comments.length} />
+      <ContentControl type={CONTENT_POSTS} id={id} commentsCount={comments.length} />
     </div>
   </div>
 )
 
-const mapDispatchToProps = (dispatch) => ({
-  onUpvotePost: (id) => dispatch(upvotePost(id)),
-  onDownvotePost: (id) => dispatch(downvotePost(id)),
-  deletePost: (id) => dispatch(deletePost(id))
-})
-
-export default connect(undefined, mapDispatchToProps)(PostSummary);
+export default connect(
+  undefined,
+  { onUpvotePost: upvotePost, onDownvotePost: downvotePost }
+)(PostSummary);

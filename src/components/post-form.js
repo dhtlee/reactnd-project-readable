@@ -80,11 +80,8 @@ const mapStateToProps = ({ categories }) => ({
   categories
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  createPost: (data) => dispatch(createPost(data)),
-  editPost: (id, data) => dispatch(editPost(id, data))
-})
-
 export default reduxForm({ 
   form: 'post'
-})(withRouter(connect(mapStateToProps, mapDispatchToProps)(PostForm)));
+})(withRouter(connect(mapStateToProps,
+  { createPost, editPost }
+)(PostForm)));

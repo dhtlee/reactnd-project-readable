@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { upvotePost, downvotePost } from 'actions/posts';
 import LineSeparator from './line-separator';
 import Stats from './stats';
-import ContentControlPost from './content-control-post';
+import { CONTENT_POSTS } from 'actions/constants';
+import ContentControl from './content-control';
 import CommentList from './comment-list';
 import { formatDate } from 'utils/helper';
 
@@ -24,7 +25,7 @@ const PostDetail = (props) => {
           <h2 className='heading'>{title}</h2>
           <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
           <p className='post-body'>{body}</p>
-          <ContentControlPost id={id} commentsCount={comments.length} />
+          <ContentControl type={CONTENT_POSTS} id={id} commentsCount={comments.length} />
         </div>
       </div>
       <LineSeparator />
@@ -33,9 +34,7 @@ const PostDetail = (props) => {
   )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onUpvotePost: (id) => dispatch(upvotePost(id)),
-  onDownvotePost: (id) => dispatch(downvotePost(id))
-})
-
-export default connect(undefined, mapDispatchToProps)(PostDetail);
+export default connect(
+  undefined,
+  { onUpvotePost: upvotePost, onDownvotePost: downvotePost }
+)(PostDetail);

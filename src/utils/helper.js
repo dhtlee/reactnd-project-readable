@@ -20,3 +20,5 @@ export const sortContent = {
   'ascending': sortArrayByKeyAsc,
   'descending': sortArrayByKeyDesc
 }
+
+export const wait = delay => new Promise(resolve => setTimeout(resolve, delay));

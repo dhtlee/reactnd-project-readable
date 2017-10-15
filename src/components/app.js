@@ -27,9 +27,6 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCategories: () => dispatch(getAllCategories()),
-  fetchPostsAndComments: () => dispatch(getAllPostsAndComments())
-})
-
-export default withRouter(connect(undefined, mapDispatchToProps)(App));
+export default withRouter(connect(undefined,
+  { fetchCategories: getAllCategories, fetchPostsAndComments: getAllPostsAndComments }
+)(App));
