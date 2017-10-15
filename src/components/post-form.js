@@ -12,15 +12,16 @@ const PostForm = (props) => {
   const isEdit = match.url.indexOf('edit') !== -1;
   return (
     <form className='form' onSubmit={handleSubmit(data => {
-        if(isEdit) {
-          const { title, body, category, author } = data;
-          data = { title, body, category, author };
-          editPost(match.params.id, data);
-        } else {
-          createPost(data);
-        }
-        history.goBack();
-      })}>
+      const { title, body, category = categories[0].name, author } = data;
+      data = { title, body, category, author };
+      if(isEdit) {
+        editPost(match.params.id, data);
+      } else {
+        createPost(data);
+      }
+      history.goBack();
+      })}
+    >
       <div className='form-field'>
         <label>Title</label>
         <div className='form-field-input'>
