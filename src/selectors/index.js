@@ -6,13 +6,6 @@ const getSortByPosts = (state) => state.sortBy.posts;
 const getSortByComments = (state) => state.sortBy.comments;
 const getPosts = (state) => state.posts.filter(post => post.deleted === false);
 const getComments = (state) => state.comments.filter(post => post.deleted === false);
-const getCategories = (state) => state.categories;
-
-export const getPostsByCategory = createSelector(
-  [ getPosts, getCategories ], (posts, category) => {
-    return posts.filter(post => post.category === category);
-  }
-)
 
 export const getPostsWithComments = createSelector(
   [ getPosts, getComments ], (posts, comments) => {
