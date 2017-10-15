@@ -9,12 +9,19 @@ import {
   DOWNVOTE_POST_SUCCESS
 } from 'actions/constants';
 
+function wait(delay) {
+  return new Promise((resolve, reject) => {
+      setTimeout(resolve, delay);
+  });
+}
+
 export const getAllPostsAndComments = () => (dispatch) => {
-  Api.getPosts()
+  wait(2000)
+    .then(() => Api.getPosts())
     .then(posts => {
       dispatch(getAllPostsSuccess(posts));
       posts.map(({ id }) => dispatch(getAllComments(id)));
-    })
+    });
 }
 
 const getAllPostsSuccess = (posts) => {
